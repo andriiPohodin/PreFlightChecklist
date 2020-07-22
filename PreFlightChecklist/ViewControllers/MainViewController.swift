@@ -58,21 +58,23 @@ class MainViewController: UIViewController {
         platformDropDown.optionArray = platforms.map { $0.platformName }
         platformDropDown.listHeight = CGFloat(50 * platformDropDown.optionArray.count)
         platformDropDown.layer.borderColor = UIColor.red.cgColor
+        platformDropDown.selectedRowColor = .white
         mainImage.image = UIImage(named: "defaultImage")
         programDropDown.placeholder = "selectProgramTitle".localized
         programDropDown.rowHeight = CGFloat(50)
         programDropDown.layer.borderColor = UIColor.red.cgColor
+        programDropDown.selectedRowColor = .white
         nextBtn.setTitle("nextBtnTitle".localized, for: .normal)
         Utilities.disabledButton(nextBtn)
         nextBtn.layer.borderColor = UIColor.red.cgColor
     }
     
     func getDropDownData() {
-        platformDropDown.didSelect{(selectedText , index ,id) in
+        platformDropDown.didSelect { (selectedText , index ,id) in
             self.selectedPlatformName = "\(selectedText)"
             self.mainImage.image = UIImage(named: "\(self.selectedPlatformName)")
             self.platformDropDown.layer.borderWidth = 0
-            self.reloadProgramTitle()
+            self.resetProgramDropDown()
             Utilities.disabledButton(self.nextBtn)
             guard let selectedDrone = self.platforms.first (where: { $0.platformName == self.selectedPlatformName })
                 else { return }
@@ -80,15 +82,16 @@ class MainViewController: UIViewController {
             let programList = programs.map { $0.programName.localized }
             self.programDropDown.optionArray = programList.removeDuplicates()
         }
-        programDropDown.didSelect{(selectedText , index ,id) in
+        programDropDown.didSelect { (selectedText , index ,id) in
             self.selectedProgramName = "\(selectedText)"
             self.programDropDown.layer.borderWidth = 0
             Utilities.enabledButton(self.nextBtn)
         }
     }
     
-    func reloadProgramTitle() {
+    func resetProgramDropDown() {
         programDropDown.text = ""
+        selectedProgramName = ""
     }
     
     @IBAction func nextBtnAction(_ sender: UIButton) {

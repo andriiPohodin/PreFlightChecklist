@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18094C6B24C85C1300817014 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18094C6A24C85C1200817014 /* GoogleService-Info.plist */; };
 		180BACB124C6C2DF0012EE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACB024C6C2DF0012EE8C /* AppDelegate.swift */; };
 		180BACB324C6C2DF0012EE8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACB224C6C2DF0012EE8C /* SceneDelegate.swift */; };
 		180BACB524C6C2DF0012EE8C /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACB424C6C2DF0012EE8C /* FirstViewController.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18094C6A24C85C1200817014 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		180BACAD24C6C2DF0012EE8C /* PreFlightChecklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreFlightChecklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180BACB024C6C2DF0012EE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		180BACB224C6C2DF0012EE8C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				180BACBC24C6C2E00012EE8C /* Assets.xcassets */,
 				180BACBE24C6C2E00012EE8C /* LaunchScreen.storyboard */,
 				180BACC124C6C2E00012EE8C /* Info.plist */,
+				18094C6A24C85C1200817014 /* GoogleService-Info.plist */,
 				180BACB924C6C2DF0012EE8C /* PreFlightChecklist.xcdatamodeld */,
 				180BACDF24C6C4230012EE8C /* Localizable.strings */,
 			);
@@ -139,7 +142,6 @@
 				2D15D8A0E2D8A04CF8B8CFDE /* Pods-PreFlightChecklist.debug.xcconfig */,
 				BB6D985E9441E8BB1128F79B /* Pods-PreFlightChecklist.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -207,6 +209,7 @@
 			files = (
 				180BACC024C6C2E00012EE8C /* LaunchScreen.storyboard in Resources */,
 				180BACDD24C6C4230012EE8C /* Localizable.strings in Resources */,
+				18094C6B24C85C1300817014 /* GoogleService-Info.plist in Resources */,
 				180BACBD24C6C2E00012EE8C /* Assets.xcassets in Resources */,
 				180BACB824C6C2DF0012EE8C /* Main.storyboard in Resources */,
 			);
