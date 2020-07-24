@@ -63,3 +63,4 @@
 "lastName" = "Last name";
 "email" = "Email";
 "password" = "Password";
+"organization" = "Organization";
