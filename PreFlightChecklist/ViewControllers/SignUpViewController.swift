@@ -42,35 +42,14 @@ class SignUpViewController: UIViewController {
         organizationTextField.placeholder = "organization".localized
     }
     
-    func validateFields() -> String? {
-        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            return "Fill in all fields"
-        }
-        
-        let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-        if Utilities.isPasswordValid(password) == false {
-            return "Password should be..."
-        }
-        
-        return nil
-    }
-    
     func showError (_ message: String) {
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
-    func transitionToHomeScreen() {
-        let mainVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController) as? MainViewController
-        view.window?.rootViewController = mainVC
-        view.window?.makeKeyAndVisible()
-    }
-
-    @IBAction func signUpBtnAction(_ sender: UIButton) {
-        
-        let error = validateFields()
-        if error != nil {
-            showError(error!)
+    func validateFields() {
+        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+            showError("fillInAllFields".localized)
         }
         else {
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -81,12 +60,12 @@ class SignUpViewController: UIViewController {
             
             Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                 if err != nil {
-                    self.showError("Error creating user")
+                    self.showError(err!.localizedDescription)
                 }
                 else {
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (error) in
-                        if error != nil {
+                    db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
+                        if err != nil {
                             self.showError("Error saving to database")
                         }
                     }
@@ -94,5 +73,17 @@ class SignUpViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    func transitionToHomeScreen() {
+        let mainVC = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController) as? MainViewController
+        view.window?.rootViewController = mainVC
+        view.window?.makeKeyAndVisible()
+    }
+
+    @IBAction func signUpBtnAction(_ sender: UIButton) {
+        
+        validateFields()
+        
     }
 }

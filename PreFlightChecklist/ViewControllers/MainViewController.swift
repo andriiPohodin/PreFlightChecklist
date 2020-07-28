@@ -103,6 +103,8 @@ class MainViewController: UIViewController {
         }
         else {
             performSegue(withIdentifier: "toDetails", sender: nil)
+//            let vc = ProgramPartViewController()
+//            vc.modalPresentationStyle = .fullScreen
             setUpElements()
         }
     }
