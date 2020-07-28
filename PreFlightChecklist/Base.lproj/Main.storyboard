@@ -25,6 +25,7 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <connections>
+                                            <action selector="signUpAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Aw2-G6-abU"/>
                                             <segue destination="K8i-gH-18E" kind="show" id="9Nh-80-u6h"/>
                                         </connections>
                                     </button>
@@ -32,6 +33,7 @@
                                         <rect key="frame" x="0.0" y="65" width="295" height="50"/>
                                         <state key="normal" title="Button"/>
                                         <connections>
+                                            <action selector="logInACtion:" destination="BYZ-38-t0r" eventType="touchUpInside" id="KoJ-kh-mdW"/>
                                             <segue destination="SSd-6U-5hm" kind="show" id="uCG-c5-hIO"/>
                                         </connections>
                                     </button>
