@@ -61,7 +61,11 @@
 "logIn" = "Войти";
 "firstName" = "Имя";
 "lastName" = "Фамилия";
-"email" = "Электронная почта";
+"email" = "Электронная почта (логин)";
 "password" = "Пароль";
 "organization" = "Компания";
 "fillInAllFields" = "Заполните все поля";
+"passwordValidationError" = "Пароль должен быть минимум 8 символов и состоять из букв, цифр, специальных знаков";
+"The email address is badly formatted." = "Неверный формат электронной почты";
+"The password is invalid or the user does not have a password." = "Неверный пароль";
+"There is no user record corresponding to this identifier. The user may have been deleted." = "Неверный логин";

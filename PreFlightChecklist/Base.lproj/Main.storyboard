@@ -70,7 +70,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="2bh-Tn-Whl">
-                                <rect key="frame" x="40" y="84" width="295" height="230"/>
+                                <rect key="frame" x="40" y="84" width="295" height="200.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BQh-8I-RSB">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
@@ -78,12 +78,12 @@
                                             <constraint firstAttribute="height" constant="50" id="Mog-NP-W0s"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wop-Rz-P4C">
                                         <rect key="frame" x="0.0" y="60" width="295" height="50"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tbq-im-NhS">
                                         <rect key="frame" x="0.0" y="120" width="295" height="50"/>
@@ -93,7 +93,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o0O-pO-2a0">
-                                        <rect key="frame" x="0.0" y="180" width="295" height="50"/>
+                                        <rect key="frame" x="0.0" y="180" width="295" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -102,7 +102,7 @@
                                 <constraints>
                                     <constraint firstItem="Tbq-im-NhS" firstAttribute="width" secondItem="BQh-8I-RSB" secondAttribute="width" id="EMm-yr-WPi"/>
                                     <constraint firstItem="Tbq-im-NhS" firstAttribute="height" secondItem="BQh-8I-RSB" secondAttribute="height" id="NZ8-Xy-R3L"/>
-                                    <constraint firstItem="o0O-pO-2a0" firstAttribute="height" secondItem="BQh-8I-RSB" secondAttribute="height" id="eHg-mY-geb"/>
+                                    <constraint firstItem="o0O-pO-2a0" firstAttribute="height" secondItem="BQh-8I-RSB" secondAttribute="height" priority="250" id="eHg-mY-geb"/>
                                     <constraint firstItem="BQh-8I-RSB" firstAttribute="leading" secondItem="2bh-Tn-Whl" secondAttribute="leading" id="eO0-PO-pel"/>
                                     <constraint firstItem="o0O-pO-2a0" firstAttribute="width" secondItem="BQh-8I-RSB" secondAttribute="width" id="gI7-xS-Xpk"/>
                                     <constraint firstAttribute="trailing" secondItem="BQh-8I-RSB" secondAttribute="trailing" id="mpa-pn-3GF"/>
@@ -146,7 +146,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="O3s-SC-RqY">
-                                                <rect key="frame" x="40" y="40" width="295" height="410"/>
+                                                <rect key="frame" x="40" y="40" width="295" height="380.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rwj-9f-2Uq">
                                                         <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
@@ -164,12 +164,12 @@
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aUk-F9-YPh">
                                                         <rect key="frame" x="0.0" y="120" width="295" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" textContentType="email"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kRc-2N-1W5">
                                                         <rect key="frame" x="0.0" y="180" width="295" height="50"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                        <textInputTraits key="textInputTraits"/>
+                                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                                     </textField>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="eAm-eU-2FP">
                                                         <rect key="frame" x="0.0" y="240" width="295" height="50"/>
@@ -184,7 +184,7 @@
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDd-UN-omL">
-                                                        <rect key="frame" x="0.0" y="360" width="295" height="50"/>
+                                                        <rect key="frame" x="0.0" y="360" width="295" height="20.5"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
@@ -199,7 +199,7 @@
                                                     <constraint firstItem="H63-Vu-SOH" firstAttribute="width" secondItem="rwj-9f-2Uq" secondAttribute="width" id="jIa-i6-9Sr"/>
                                                     <constraint firstItem="kRc-2N-1W5" firstAttribute="height" secondItem="rwj-9f-2Uq" secondAttribute="height" id="jYD-rC-Yhg"/>
                                                     <constraint firstItem="T7s-96-CwL" firstAttribute="height" secondItem="rwj-9f-2Uq" secondAttribute="height" id="oRV-MK-Y2t"/>
-                                                    <constraint firstItem="eDd-UN-omL" firstAttribute="height" secondItem="rwj-9f-2Uq" secondAttribute="height" id="oSJ-YR-zDz"/>
+                                                    <constraint firstItem="eDd-UN-omL" firstAttribute="height" secondItem="rwj-9f-2Uq" secondAttribute="height" priority="250" id="oSJ-YR-zDz"/>
                                                     <constraint firstItem="eDd-UN-omL" firstAttribute="width" secondItem="rwj-9f-2Uq" secondAttribute="width" id="whJ-jr-E8t"/>
                                                     <constraint firstItem="aUk-F9-YPh" firstAttribute="height" secondItem="rwj-9f-2Uq" secondAttribute="height" id="xMC-pj-yz1"/>
                                                     <constraint firstItem="T7s-96-CwL" firstAttribute="width" secondItem="rwj-9f-2Uq" secondAttribute="width" id="z7B-4P-AHO"/>

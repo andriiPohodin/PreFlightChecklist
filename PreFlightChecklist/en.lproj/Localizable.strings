@@ -61,7 +61,11 @@
 "logIn" = "Log in";
 "firstName" = "First name";
 "lastName" = "Last name";
-"email" = "Email";
+"email" = "Email (login)";
 "password" = "Password";
 "organization" = "Organization";
 "fillInAllFields" = "Fill in all fields";
+"passwordValidationError" = "Password should be at least 8 symbols and contain letters, digits, special characters";
+"The email address is badly formatted." = "The email address is badly formatted";
+"The password is invalid or the user does not have a password." = "Invalid password";
+"There is no user record corresponding to this identifier. The user may have been deleted." = "Invalid login";

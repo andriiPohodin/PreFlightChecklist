@@ -11,6 +11,7 @@ import FirebaseAuth
 import Firebase
 
 class SignUpViewController: UIViewController {
+    
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -23,10 +24,10 @@ class SignUpViewController: UIViewController {
         super.viewDidLoad()
         
         setUpElements()
-
     }
-
+    
     func setUpElements() {
+        
         errorLabel.alpha = 0
         Utilities.styleTextField(firstNameTextField)
         Utilities.styleTextField(lastNameTextField)
@@ -43,11 +44,13 @@ class SignUpViewController: UIViewController {
     }
     
     func showError (_ message: String) {
+        
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
     func validateFields() {
+        
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             showError("fillInAllFields".localized)
         }
@@ -58,32 +61,39 @@ class SignUpViewController: UIViewController {
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let organization = organizationTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
-            Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                if err != nil {
-                    self.showError(err!.localizedDescription)
-                }
-                else {
-                    let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
-                        if err != nil {
-                            self.showError("Error saving to database")
-                        }
+            if Utilities.isPasswordValid(password) == true {
+                
+                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                    if err != nil {
+                        let localizedErr = err?.localizedDescription
+                        self.showError(localizedErr!.localized)
                     }
-                    self.transitionToHomeScreen()
+                    else {
+                        let db = Firestore.firestore()
+                        db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
+                            if err != nil {
+                                self.showError(err!.localizedDescription)
+                            }
+                        }
+                        self.transitionToHomeScreen()
+                    }
                 }
+            }
+            else {
+                showError("passwordValidationError".localized)
             }
         }
     }
     
     func transitionToHomeScreen() {
+        
         let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController) as? MainViewController
         view.window?.rootViewController = vc
         view.window?.makeKeyAndVisible()
     }
-
+    
     @IBAction func signUpBtnAction(_ sender: UIButton) {
         
         validateFields()
-        
     }
 }

@@ -20,10 +20,10 @@ class LogInViewController: UIViewController {
         super.viewDidLoad()
         
         setUpElements()
-        
     }
     
     func setUpElements() {
+        
         errorLabel.alpha = 0
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
@@ -34,11 +34,13 @@ class LogInViewController: UIViewController {
     }
     
     func showError (_ message: String) {
+        
         errorLabel.text = message
         errorLabel.alpha = 1
     }
     
     func validateFields() {
+        
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             showError("fillInAllFields".localized)
         }
@@ -48,7 +50,8 @@ class LogInViewController: UIViewController {
             
             Auth.auth().signIn(withEmail: email, password: password) { (result, err) in
                 if err != nil {
-                    self.showError(err!.localizedDescription)
+                    let localizedErr = err?.localizedDescription
+                    self.showError(localizedErr!.localized)
                 }
                 else {
                     self.transitionToHomeScreen()
@@ -58,6 +61,7 @@ class LogInViewController: UIViewController {
     }
     
     func transitionToHomeScreen() {
+        
         let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController) as? MainViewController
         view.window?.rootViewController = vc
         view.window?.makeKeyAndVisible()
@@ -66,6 +70,5 @@ class LogInViewController: UIViewController {
     @IBAction func logInBtnAction(_ sender: UIButton) {
         
         validateFields()
-        
     }
 }

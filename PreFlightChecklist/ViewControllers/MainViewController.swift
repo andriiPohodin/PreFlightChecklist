@@ -10,6 +10,7 @@ import UIKit
 import iOSDropDown
 
 class MainViewController: UIViewController {
+    
     @IBOutlet weak var platformDropDown: DropDown!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var programDropDown: DropDown!
@@ -28,11 +29,11 @@ class MainViewController: UIViewController {
         
         setUpElements()
         getDropDownData()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
         switch segue.identifier {
         case "toDetails":
             let destinationVC = segue.destination as? ProgramPartViewController
@@ -48,6 +49,7 @@ class MainViewController: UIViewController {
     }
     
     func setUpElements() {
+        
         selectedPlatformName = ""
         selectedProgramName = ""
         platformDropDown.text = ""
@@ -70,6 +72,7 @@ class MainViewController: UIViewController {
     }
     
     func getDropDownData() {
+        
         platformDropDown.didSelect { (selectedText , index ,id) in
             self.selectedPlatformName = "\(selectedText)"
             self.mainImage.image = UIImage(named: "\(self.selectedPlatformName)")
@@ -90,11 +93,13 @@ class MainViewController: UIViewController {
     }
     
     func resetProgramDropDown() {
+        
         programDropDown.text = ""
         selectedProgramName = ""
     }
     
     @IBAction func nextBtnAction(_ sender: UIButton) {
+        
         if selectedPlatformName == "" {
             platformDropDown.layer.borderWidth = 3
         }
@@ -103,8 +108,8 @@ class MainViewController: UIViewController {
         }
         else {
             performSegue(withIdentifier: "toDetails", sender: nil)
-//            let vc = ProgramPartViewController()
-//            vc.modalPresentationStyle = .fullScreen
+            //            let vc = ProgramPartViewController()
+            //            vc.modalPresentationStyle = .fullScreen
             setUpElements()
         }
     }

@@ -10,6 +10,7 @@ import UIKit
 import AVKit
 
 class FirstViewController: UIViewController {
+    
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var logInBtn: UIButton!
     
@@ -31,6 +32,7 @@ class FirstViewController: UIViewController {
     
     
     func setUpElements() {
+        
         Utilities.styleFilledButton(signUpBtn)
         Utilities.styleHollowButton(logInBtn)
         signUpBtn.setTitle("signUp".localized, for: .normal)
@@ -38,6 +40,7 @@ class FirstViewController: UIViewController {
     }
     
     func setUpVideo() {
+        
         guard let bundlePath = Bundle.main.path(forResource: "My Movie", ofType: "mp4")
             else { return }
         let url = URL(fileURLWithPath: bundlePath)
@@ -50,9 +53,11 @@ class FirstViewController: UIViewController {
         videoPlayer?.playImmediately(atRate: 2)
     }
     @IBAction func signUpAction(_ sender: UIButton) {
+        
         videoPlayer?.pause()
     }
     @IBAction func logInACtion(_ sender: UIButton) {
+        
         videoPlayer?.pause()
     }
 }

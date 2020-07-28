@@ -9,6 +9,7 @@
 import UIKit
 
 class ProgramPartViewController: UIViewController {
+    
     @IBOutlet weak var indoorBtn: UIButton!
     @IBOutlet weak var indoorLabel: UILabel!
     @IBOutlet weak var outdoorBtn: UIButton!
@@ -22,11 +23,11 @@ class ProgramPartViewController: UIViewController {
         super.viewDidLoad()
         
         setUpElements()
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
+        
         switch segue.identifier {
         case "toLesson":
             let destinationVC = segue.destination as? FinalViewController
@@ -42,6 +43,7 @@ class ProgramPartViewController: UIViewController {
     }
     
     func setUpElements() {
+        
         indoorBtn.setTitle("indoorBtnTitle".localized, for: .normal)
         indoorLabel.text = "indoorLabelText".localized
         outdoorBtn.setTitle("outdoorBtnTitle".localized, for: .normal)
@@ -49,10 +51,12 @@ class ProgramPartViewController: UIViewController {
     }
     
     @IBAction func indoorBtnAction(_ sender: UIButton) {
+        
         tappedBtn = indoorBtn
         performSegue(withIdentifier: "toLesson", sender: nil)
     }
     @IBAction func outdoorBtnAction(_ sender: UIButton) {
+        
         tappedBtn = outdoorBtn
         performSegue(withIdentifier: "toLesson", sender: nil)
     }
