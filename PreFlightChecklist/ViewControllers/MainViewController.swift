@@ -52,8 +52,8 @@ class MainViewController: UIViewController {
         
         selectedPlatformName = ""
         selectedProgramName = ""
-        platformDropDown.text = ""
-        programDropDown.text = ""
+        platformDropDown.text = selectedPlatformName
+        programDropDown.text = selectedProgramName
         programDropDown.optionArray = []
         platformDropDown.placeholder = "selectPlatformTitle".localized
         platformDropDown.rowHeight = CGFloat(50)
@@ -74,8 +74,8 @@ class MainViewController: UIViewController {
     func getDropDownData() {
         
         platformDropDown.didSelect { (selectedText , index ,id) in
-            self.selectedPlatformName = "\(selectedText)"
-            self.mainImage.image = UIImage(named: "\(self.selectedPlatformName)")
+            self.selectedPlatformName = selectedText
+            self.mainImage.image = UIImage(named: self.selectedPlatformName)
             self.platformDropDown.layer.borderWidth = 0
             self.resetProgramDropDown()
             Utilities.disabledButton(self.nextBtn)
@@ -86,7 +86,7 @@ class MainViewController: UIViewController {
             self.programDropDown.optionArray = programList.removeDuplicates()
         }
         programDropDown.didSelect { (selectedText , index ,id) in
-            self.selectedProgramName = "\(selectedText)"
+            self.selectedProgramName = selectedText
             self.programDropDown.layer.borderWidth = 0
             Utilities.enabledButton(self.nextBtn)
         }
@@ -108,8 +108,6 @@ class MainViewController: UIViewController {
         }
         else {
             performSegue(withIdentifier: "toDetails", sender: nil)
-            //            let vc = ProgramPartViewController()
-            //            vc.modalPresentationStyle = .fullScreen
             setUpElements()
         }
     }

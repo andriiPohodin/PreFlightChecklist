@@ -23,7 +23,20 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        firstNameTextField.delegate = self
+//        lastNameTextField.delegate = self
+//        emailTextField.delegate = self
+//        passwordTextField.delegate = self
+//        organizationTextField.delegate = self
         setUpElements()
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        for textField in self.view.subviews where textField is UITextField {
+            textField.resignFirstResponder()
+        }
+        
+        return true
     }
     
     func setUpElements() {
