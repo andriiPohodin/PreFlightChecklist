@@ -27,7 +27,7 @@ class FinalViewController: UIViewController {
         setUpElements()
     }
     
-    //    Default screen + Moves between steps related funcs
+    //    Default screen + Moves between steps functions
     
     func setUpElements() {
         
