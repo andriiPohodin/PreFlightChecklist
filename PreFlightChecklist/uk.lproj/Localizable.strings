@@ -63,9 +63,11 @@
 "lastName" = "Прізвище";
 "email" = "Електронна пошта (логін)";
 "password" = "Пароль";
+"confirmPassword" = "Підтвердіть пароль";
 "organization" = "Компанія";
 "fillInAllFields" = "Заповніть всі поля";
 "passwordValidationError" = "Пароль має бути мінімум 8 символів і складатись з букв, цифр, спеціальних символів";
+"passwordConfirmationError" = "Паролі не співпадають";
 "The email address is badly formatted." = "Невірний формат електронної пошти";
 "The password is invalid or the user does not have a password." = "Невірний пароль";
 "There is no user record corresponding to this identifier. The user may have been deleted." = "Невірний логін";

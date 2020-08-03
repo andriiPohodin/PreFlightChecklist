@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var organizationTextField: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var errorLabel: UILabel!
@@ -23,21 +24,21 @@ class SignUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        firstNameTextField.delegate = self
-//        lastNameTextField.delegate = self
-//        emailTextField.delegate = self
-//        passwordTextField.delegate = self
-//        organizationTextField.delegate = self
+        //        firstNameTextField.delegate = self
+        //        lastNameTextField.delegate = self
+        //        emailTextField.delegate = self
+        //        passwordTextField.delegate = self
+        //        organizationTextField.delegate = self
         setUpElements()
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        for textField in self.view.subviews where textField is UITextField {
-            textField.resignFirstResponder()
-        }
-        
-        return true
-    }
+    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    //        for textField in self.view.subviews where textField is UITextField {
+    //            textField.resignFirstResponder()
+    //        }
+    //
+    //        return true
+    //    }
     
     func setUpElements() {
         
@@ -46,6 +47,7 @@ class SignUpViewController: UIViewController {
         Utilities.styleTextField(lastNameTextField)
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
+        Utilities.styleTextField(confirmPasswordTextField)
         Utilities.styleTextField(organizationTextField)
         Utilities.styleFilledButton(signUpBtn)
         signUpBtn.setTitle("signUp".localized, for: .normal)
@@ -53,6 +55,7 @@ class SignUpViewController: UIViewController {
         lastNameTextField.placeholder = "lastName".localized
         emailTextField.placeholder = "email".localized
         passwordTextField.placeholder = "password".localized
+        confirmPasswordTextField.placeholder = "confirmPassword".localized
         organizationTextField.placeholder = "organization".localized
     }
     
@@ -64,7 +67,9 @@ class SignUpViewController: UIViewController {
     
     func validateFields() {
         
-        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
+            organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             showError("fillInAllFields".localized)
         }
         else {
@@ -72,37 +77,35 @@ class SignUpViewController: UIViewController {
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let confirmPassword = confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
             let organization = organizationTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if Utilities.isPasswordValid(password) == true {
-                
-                Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
-                    if err != nil {
-                        let localizedErr = err?.localizedDescription
-                        self.showError(localizedErr!.localized)
-                    }
-                    else {
-                        let db = Firestore.firestore()
-                        db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
-                            if err != nil {
-                                self.showError(err!.localizedDescription)
-                            }
+                if password == confirmPassword {
+                    Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                        if err != nil {
+                            let localizedErr = err?.localizedDescription
+                            self.showError(localizedErr!.localized)
                         }
-                        self.transitionToHomeScreen()
+                        else {
+                            let db = Firestore.firestore()
+                            db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
+                                if err != nil {
+                                    self.showError(err!.localizedDescription)
+                                }
+                            }
+                            self.performSegue(withIdentifier: "signUpToMainVC", sender: nil)
+                        }
                     }
+                }
+                else {
+                    showError("passwordConfirmationError".localized)
                 }
             }
             else {
                 showError("passwordValidationError".localized)
             }
         }
-    }
-    
-    func transitionToHomeScreen() {
-        
-        let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController) as? MainViewController
-        view.window?.rootViewController = vc
-        view.window?.makeKeyAndVisible()
     }
     
     @IBAction func signUpBtnAction(_ sender: UIButton) {

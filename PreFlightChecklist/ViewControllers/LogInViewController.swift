@@ -54,17 +54,10 @@ class LogInViewController: UIViewController {
                     self.showError(localizedErr!.localized)
                 }
                 else {
-                    self.transitionToHomeScreen()
+                    self.performSegue(withIdentifier: "logInToMainVC", sender: nil)
                 }
             }
         }
-    }
-    
-    func transitionToHomeScreen() {
-        
-        let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainViewController) as? MainViewController
-        view.window?.rootViewController = vc
-        view.window?.makeKeyAndVisible()
     }
     
     @IBAction func logInBtnAction(_ sender: UIButton) {

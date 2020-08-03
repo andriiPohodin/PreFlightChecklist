@@ -44,7 +44,8 @@ class MainViewController: UIViewController {
             guard let outdoorProgram = platform?.availablePrograms.first(where: { $0.programName.localized == selectedProgramName.localized && $0.isIndoor == false })
                 else { return }
             destinationVC?.outdoorPart = outdoorProgram.stepData
-        default: break
+        default:
+            break
         }
     }
     
@@ -69,6 +70,7 @@ class MainViewController: UIViewController {
         nextBtn.setTitle("nextBtnTitle".localized, for: .normal)
         Utilities.disabledButton(nextBtn)
         nextBtn.layer.borderColor = UIColor.red.cgColor
+        navigationController?.isNavigationBarHidden = true
     }
     
     func getDropDownData() {

@@ -25,6 +25,12 @@ class ProgramPartViewController: UIViewController {
         setUpElements()
     }
     
+    override func willMove(toParent parent: UIViewController?) {
+        if parent == nil {
+            navigationController?.isNavigationBarHidden = true
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -38,7 +44,8 @@ class ProgramPartViewController: UIViewController {
                 destinationVC?.lessonToShow = outdoorPart
             }
             else { return }
-        default: break
+        default:
+            break
         }
     }
     
@@ -48,6 +55,7 @@ class ProgramPartViewController: UIViewController {
         indoorLabel.text = "indoorLabelText".localized
         outdoorBtn.setTitle("outdoorBtnTitle".localized, for: .normal)
         outdoorLabel.text = "outdoorLabelText".localized
+        navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func indoorBtnAction(_ sender: UIButton) {
