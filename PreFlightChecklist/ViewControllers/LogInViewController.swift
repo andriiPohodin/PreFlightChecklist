@@ -22,6 +22,20 @@ class LogInViewController: UIViewController {
         setUpElements()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "logInToMainVC":
+            let destinationVC = segue.destination as? MainViewController
+            guard let userName = emailTextField.text
+                else { return }
+            destinationVC?.userName = userName
+        default:
+            break
+        }
+    }
+    
     func setUpElements() {
         
         errorLabel.alpha = 0

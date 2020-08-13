@@ -329,9 +329,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="JXx-5o-TJF"/>
                     </view>
-                    <navigationItem key="navigationItem" id="tht-J7-bRy">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="oVi-sK-2Vz"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="tht-J7-bRy"/>
                     <connections>
                         <outlet property="mainImage" destination="dtE-Pq-eyu" id="kY3-bQ-fJ3"/>
                         <outlet property="nextBtn" destination="kZQ-Jo-62s" id="cdv-qB-bM3"/>
@@ -632,7 +630,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Way-Bk-Agk"/>
+        <segue reference="ZLv-cp-3Nc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="disclosureIndicator" width="22" height="40"/>

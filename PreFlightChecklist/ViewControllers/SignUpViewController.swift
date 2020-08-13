@@ -40,6 +40,20 @@ class SignUpViewController: UIViewController {
     //        return true
     //    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        super.prepare(for: segue, sender: sender)
+        
+        switch segue.identifier {
+        case "signUpToMainVC":
+            let destinationVC = segue.destination as? MainViewController
+            guard let userName = emailTextField.text
+                else { return }
+            destinationVC?.userName = userName
+        default:
+            break
+        }
+    }
+    
     func setUpElements() {
         
         errorLabel.alpha = 0

@@ -71,3 +71,4 @@
 "The email address is badly formatted." = "Неверный формат электронной почты";
 "The password is invalid or the user does not have a password." = "Неверный пароль";
 "There is no user record corresponding to this identifier. The user may have been deleted." = "Неверный логин";
+"Account" = "Ваш профиль";
