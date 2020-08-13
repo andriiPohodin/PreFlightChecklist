@@ -20,7 +20,15 @@ struct Constants {
     
     struct Storyboard {
         
-        static let mainViewController = "MainVC"
+        static let firstVC = "firstVC"
+        static let homeVC = "homeVC"
+    }
+    
+    struct Segues {
         
+        static let signUpToMain = "signUpToMainVC"
+        static let logInToMain = "logInToMainVC"
+        static let toDetails = "toDetails"
+        static let toLesson = "toLesson"
     }
 }

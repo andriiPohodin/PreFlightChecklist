@@ -35,7 +35,7 @@ class ProgramPartViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         switch segue.identifier {
-        case "toLesson":
+        case Constants.Segues.toLesson:
             let destinationVC = segue.destination as? FinalViewController
             if tappedBtn == indoorBtn {
                 destinationVC?.lessonToShow = indoorPart
@@ -61,11 +61,11 @@ class ProgramPartViewController: UIViewController {
     @IBAction func indoorBtnAction(_ sender: UIButton) {
         
         tappedBtn = indoorBtn
-        performSegue(withIdentifier: "toLesson", sender: nil)
+        performSegue(withIdentifier: Constants.Segues.toLesson, sender: nil)
     }
     @IBAction func outdoorBtnAction(_ sender: UIButton) {
         
         tappedBtn = outdoorBtn
-        performSegue(withIdentifier: "toLesson", sender: nil)
+        performSegue(withIdentifier: Constants.Segues.toLesson, sender: nil)
     }
 }

@@ -11,14 +11,11 @@ import iOSDropDown
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var accountBtn: UIButton!
-    @IBOutlet weak var accountLabel: UILabel!
     @IBOutlet weak var platformDropDown: DropDown!
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var programDropDown: DropDown!
     @IBOutlet weak var nextBtn: UIButton!
     
-    var userName = String()
     var selectedPlatformName = String()
     var selectedProgramName = String()
     
@@ -38,7 +35,7 @@ class MainViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         switch segue.identifier {
-        case "toDetails":
+        case Constants.Segues.toDetails:
             let destinationVC = segue.destination as? ProgramPartViewController
             let platform = platforms.first(where: { $0.platformName == selectedPlatformName })
             guard let indoorProgram = platform?.availablePrograms.first(where: { $0.programName.localized == selectedProgramName.localized && $0.isIndoor == true })
@@ -54,7 +51,6 @@ class MainViewController: UIViewController {
     
     func setUpElements() {
         
-//        accountLabel.text = "Account".localized
         selectedPlatformName = ""
         selectedProgramName = ""
         platformDropDown.text = selectedPlatformName
@@ -117,7 +113,7 @@ class MainViewController: UIViewController {
             programDropDown.layer.borderWidth = 3
         }
         else {
-            performSegue(withIdentifier: "toDetails", sender: nil)
+            performSegue(withIdentifier: Constants.Segues.toDetails, sender: nil)
             setUpElements()
         }
     }

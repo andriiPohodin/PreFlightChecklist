@@ -25,6 +25,7 @@
 		180BACD824C6C3F90012EE8C /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD724C6C3F90012EE8C /* Structs.swift */; };
 		180BACDA24C6C4050012EE8C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD924C6C4050012EE8C /* Utilities.swift */; };
 		180BACDD24C6C4230012EE8C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 180BACDF24C6C4230012EE8C /* Localizable.strings */; };
+		182C7BD624E588C100641EA8 /* LogOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C7BD524E588C100641EA8 /* LogOutViewController.swift */; };
 		18D554F224D01E4900FF0ECB /* My Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 18D554F124D01E4900FF0ECB /* My Movie.mp4 */; };
 		18D554F624D2E66200FF0ECB /* resignFirstResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D554F524D2E66200FF0ECB /* resignFirstResponder.swift */; };
 		AE4BF81038962BB4A4E0AEC8 /* Pods_PreFlightChecklist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E390888A8CCBC300AD0A7DA6 /* Pods_PreFlightChecklist.framework */; };
@@ -53,6 +54,7 @@
 		180BACDE24C6C4230012EE8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		180BACE024C6C4310012EE8C /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		180BACE124C6C43B0012EE8C /* uk */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = uk; path = uk.lproj/Localizable.strings; sourceTree = "<group>"; };
+		182C7BD524E588C100641EA8 /* LogOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutViewController.swift; sourceTree = "<group>"; };
 		18D554F124D01E4900FF0ECB /* My Movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My Movie.mp4"; sourceTree = "<group>"; };
 		18D554F524D2E66200FF0ECB /* resignFirstResponder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = resignFirstResponder.swift; sourceTree = "<group>"; };
 		2D15D8A0E2D8A04CF8B8CFDE /* Pods-PreFlightChecklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreFlightChecklist.debug.xcconfig"; path = "Target Support Files/Pods-PreFlightChecklist/Pods-PreFlightChecklist.debug.xcconfig"; sourceTree = "<group>"; };
@@ -116,6 +118,7 @@
 				180BACC824C6C3480012EE8C /* SignUpViewController.swift */,
 				180BACCA24C6C3570012EE8C /* LogInViewController.swift */,
 				180BACCC24C6C3630012EE8C /* MainViewController.swift */,
+				182C7BD524E588C100641EA8 /* LogOutViewController.swift */,
 				180BACCE24C6C37B0012EE8C /* ProgramPartViewController.swift */,
 				180BACD024C6C38B0012EE8C /* FinalViewController.swift */,
 			);
@@ -282,6 +285,7 @@
 				180BACD824C6C3F90012EE8C /* Structs.swift in Sources */,
 				180BACCF24C6C37B0012EE8C /* ProgramPartViewController.swift in Sources */,
 				180BACD424C6C3CA0012EE8C /* Array+removeDuplicates.swift in Sources */,
+				182C7BD624E588C100641EA8 /* LogOutViewController.swift in Sources */,
 				180BACD624C6C3E00012EE8C /* String+localized.swift in Sources */,
 				18D554F624D2E66200FF0ECB /* resignFirstResponder.swift in Sources */,
 				180BACDA24C6C4050012EE8C /* Utilities.swift in Sources */,

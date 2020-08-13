@@ -23,29 +23,16 @@ class SignUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        //        firstNameTextField.delegate = self
-        //        lastNameTextField.delegate = self
-        //        emailTextField.delegate = self
-        //        passwordTextField.delegate = self
-        //        organizationTextField.delegate = self
+     
         setUpElements()
     }
-    
-    //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-    //        for textField in self.view.subviews where textField is UITextField {
-    //            textField.resignFirstResponder()
-    //        }
-    //
-    //        return true
-    //    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
         switch segue.identifier {
-        case "signUpToMainVC":
-            let destinationVC = segue.destination as? MainViewController
+        case Constants.Segues.signUpToMain:
+            let destinationVC = segue.destination as? LogOutViewController
             guard let userName = emailTextField.text
                 else { return }
             destinationVC?.userName = userName
@@ -108,7 +95,7 @@ class SignUpViewController: UIViewController {
                                     self.showError(err!.localizedDescription)
                                 }
                             }
-                            self.performSegue(withIdentifier: "signUpToMainVC", sender: nil)
+                            self.performSegue(withIdentifier: Constants.Segues.signUpToMain, sender: nil)
                         }
                     }
                 }

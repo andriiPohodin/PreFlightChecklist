@@ -26,8 +26,8 @@ class LogInViewController: UIViewController {
         super.prepare(for: segue, sender: sender)
         
         switch segue.identifier {
-        case "logInToMainVC":
-            let destinationVC = segue.destination as? MainViewController
+        case Constants.Segues.logInToMain:
+            let destinationVC = segue.destination as? LogOutViewController
             guard let userName = emailTextField.text
                 else { return }
             destinationVC?.userName = userName
@@ -68,7 +68,7 @@ class LogInViewController: UIViewController {
                     self.showError(localizedErr!.localized)
                 }
                 else {
-                    self.performSegue(withIdentifier: "logInToMainVC", sender: nil)
+                    self.performSegue(withIdentifier: Constants.Segues.logInToMain, sender: nil)
                 }
             }
         }
