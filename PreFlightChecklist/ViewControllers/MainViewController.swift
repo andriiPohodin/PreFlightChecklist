@@ -75,17 +75,17 @@ class MainViewController: UIViewController {
     
     func getDropDownData() {
         
-        platformDropDown.didSelect { (selectedText , index ,id) in
-            self.selectedPlatformName = selectedText
-            self.mainImage.image = UIImage(named: self.selectedPlatformName)
-            self.platformDropDown.layer.borderWidth = 0
-            self.resetProgramDropDown()
-            Utilities.disabledButton(self.nextBtn)
-            guard let selectedDrone = self.platforms.first (where: { $0.platformName == self.selectedPlatformName })
+        platformDropDown.didSelect { [weak self] (selectedText , index ,id) in
+            self?.selectedPlatformName = selectedText
+            self?.mainImage.image = UIImage(named: self?.selectedPlatformName ?? "defaultImage")
+            self?.platformDropDown.layer.borderWidth = 0
+            self?.resetProgramDropDown()
+            Utilities.disabledButton((self?.nextBtn)!)
+            guard let selectedDrone = self?.platforms.first (where: { $0.platformName == self?.selectedPlatformName })
                 else { return }
             let programs = selectedDrone.availablePrograms
             let programList = programs.map { $0.programName.localized }
-            self.programDropDown.optionArray = programList.removeDuplicates()
+            self?.programDropDown.optionArray = programList.removeDuplicates()
         }
         programDropDown.didSelect { (selectedText , index ,id) in
             self.selectedProgramName = selectedText

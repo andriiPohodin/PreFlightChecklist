@@ -9,21 +9,25 @@
 import UIKit
 
 class LogOutViewController: UIViewController {
+    @IBOutlet weak var label: UILabel!
     
     var userName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        label.text = Settings.defaults.string(forKey: "userName")
     }
     
     @IBAction func action(_ sender: UIButton) {
         
+        Settings.userDidLogOut()
         guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.firstVC) as? FirstViewController
             else { return }
         let navigationVC = UINavigationController(rootViewController: vc)
         navigationVC.modalPresentationStyle = .fullScreen
-        self.present(navigationVC, animated: false)
+        DispatchQueue.main.async {
+            self.present(navigationVC, animated: false)
+        }
     }
 }

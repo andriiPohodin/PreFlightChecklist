@@ -507,15 +507,30 @@
                                     <action selector="action:" destination="rUW-DP-sYC" eventType="touchUpInside" id="WDH-O0-DJc"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQE-N7-nbb">
+                                <rect key="frame" x="20" y="102" width="335" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="ke0-r5-Q9Z"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Io7-L5-LY0" firstAttribute="centerX" secondItem="053-74-uCh" secondAttribute="centerX" id="8LF-mL-OJg"/>
                             <constraint firstItem="Io7-L5-LY0" firstAttribute="centerY" secondItem="053-74-uCh" secondAttribute="centerY" id="Dwu-Yf-Aob"/>
+                            <constraint firstItem="053-74-uCh" firstAttribute="trailing" secondItem="tQE-N7-nbb" secondAttribute="trailing" constant="20" id="WVg-Ok-VFa"/>
+                            <constraint firstItem="tQE-N7-nbb" firstAttribute="top" secondItem="053-74-uCh" secondAttribute="top" constant="58" id="b8B-u8-rSa"/>
+                            <constraint firstItem="tQE-N7-nbb" firstAttribute="leading" secondItem="053-74-uCh" secondAttribute="leading" constant="20" id="ifP-Kn-w8L"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="053-74-uCh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Account" image="book.fill" catalog="system" id="DmJ-Bg-sCc"/>
+                    <connections>
+                        <outlet property="label" destination="tQE-N7-nbb" id="j7v-Kp-5S7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qej-CA-W1N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -684,7 +699,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="ZLv-cp-3Nc"/>
+        <segue reference="Way-Bk-Agk"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="book.fill" catalog="system" width="128" height="100"/>

@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseAuth
 
-class LogInViewController: UIViewController {
+class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -19,6 +19,8 @@ class LogInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
         setUpElements()
     }
     
@@ -34,6 +36,13 @@ class LogInViewController: UIViewController {
         default:
             break
         }
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        let firstResponder = view.window?.firstResponder
+        firstResponder!.resignFirstResponder()
+        return true
     }
     
     func setUpElements() {
@@ -69,6 +78,7 @@ class LogInViewController: UIViewController {
                 }
                 else {
                     self.performSegue(withIdentifier: Constants.Segues.logInToMain, sender: nil)
+                    Settings.userDidLogIn(self.emailTextField.text!)
                 }
             }
         }
