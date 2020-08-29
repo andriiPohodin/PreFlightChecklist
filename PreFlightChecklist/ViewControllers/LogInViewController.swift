@@ -1,11 +1,3 @@
-//
-//  LogInViewController.swift
-//  PreFlightChecklist
-//
-//  Created by Andrii Pohodin on 21.07.2020.
-//  Copyright © 2020 Andrii Pohodin. All rights reserved.
-//
-
 import UIKit
 import FirebaseAuth
 
@@ -34,6 +26,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         if parent == nil {
             navigationController?.isNavigationBarHidden = true
         }
+    }
+    
+    func popRootVC() {
+        
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -76,6 +73,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 }
                 else {
                     Settings.userDidLogIn((self?.emailTextField.text)!)
+                    self?.popRootVC()
                 }
             }
         }
@@ -84,6 +82,5 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func logInBtnAction(_ sender: UIButton) {
         
         validateFields()
-        performSegue(withIdentifier: Constants.Segues.logInToMain, sender: nil)
     }
 }

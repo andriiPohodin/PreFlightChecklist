@@ -20,8 +20,7 @@
 		180BACCD24C6C3630012EE8C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACCC24C6C3630012EE8C /* MainViewController.swift */; };
 		180BACCF24C6C37B0012EE8C /* ProgramPartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACCE24C6C37B0012EE8C /* ProgramPartViewController.swift */; };
 		180BACD124C6C38B0012EE8C /* FinalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD024C6C38B0012EE8C /* FinalViewController.swift */; };
-		180BACD424C6C3CA0012EE8C /* Array+removeDuplicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD324C6C3CA0012EE8C /* Array+removeDuplicates.swift */; };
-		180BACD624C6C3E00012EE8C /* String+localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD524C6C3E00012EE8C /* String+localized.swift */; };
+		180BACD624C6C3E00012EE8C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD524C6C3E00012EE8C /* Extensions.swift */; };
 		180BACD824C6C3F90012EE8C /* Structs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD724C6C3F90012EE8C /* Structs.swift */; };
 		180BACDA24C6C4050012EE8C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACD924C6C4050012EE8C /* Utilities.swift */; };
 		180BACDD24C6C4230012EE8C /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 180BACDF24C6C4230012EE8C /* Localizable.strings */; };
@@ -47,8 +46,7 @@
 		180BACCC24C6C3630012EE8C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		180BACCE24C6C37B0012EE8C /* ProgramPartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramPartViewController.swift; sourceTree = "<group>"; };
 		180BACD024C6C38B0012EE8C /* FinalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinalViewController.swift; sourceTree = "<group>"; };
-		180BACD324C6C3CA0012EE8C /* Array+removeDuplicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+removeDuplicates.swift"; sourceTree = "<group>"; };
-		180BACD524C6C3E00012EE8C /* String+localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+localized.swift"; sourceTree = "<group>"; };
+		180BACD524C6C3E00012EE8C /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		180BACD724C6C3F90012EE8C /* Structs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Structs.swift; sourceTree = "<group>"; };
 		180BACD924C6C4050012EE8C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		180BACDE24C6C4230012EE8C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -128,8 +126,7 @@
 		180BACD224C6C3920012EE8C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				180BACD324C6C3CA0012EE8C /* Array+removeDuplicates.swift */,
-				180BACD524C6C3E00012EE8C /* String+localized.swift */,
+				180BACD524C6C3E00012EE8C /* Extensions.swift */,
 				180BACD724C6C3F90012EE8C /* Structs.swift */,
 				180BACD924C6C4050012EE8C /* Utilities.swift */,
 				182C7BD724F6ED4C00641EA8 /* UserSettings.swift */,
@@ -284,9 +281,8 @@
 			files = (
 				180BACD824C6C3F90012EE8C /* Structs.swift in Sources */,
 				180BACCF24C6C37B0012EE8C /* ProgramPartViewController.swift in Sources */,
-				180BACD424C6C3CA0012EE8C /* Array+removeDuplicates.swift in Sources */,
 				182C7BD624E588C100641EA8 /* LogOutViewController.swift in Sources */,
-				180BACD624C6C3E00012EE8C /* String+localized.swift in Sources */,
+				180BACD624C6C3E00012EE8C /* Extensions.swift in Sources */,
 				180BACDA24C6C4050012EE8C /* Utilities.swift in Sources */,
 				180BACD124C6C38B0012EE8C /* FinalViewController.swift in Sources */,
 				180BACCD24C6C3630012EE8C /* MainViewController.swift in Sources */,

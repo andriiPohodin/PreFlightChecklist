@@ -2,7 +2,7 @@ import UIKit
 
 class Utilities {
     
-    static func styleTextField(_ textfield:UITextField) {
+    static func styleTextField(_ textfield: UITextField) {
         
         // Create the bottom line
         let bottomLine = CALayer()
@@ -19,7 +19,7 @@ class Utilities {
         
     }
     
-    static func styleFilledButton(_ button:UIButton) {
+    static func styleFilledButton(_ button: UIButton) {
         
         // Filled rounded corner style
         button.backgroundColor = UIColor.systemBlue
@@ -27,7 +27,7 @@ class Utilities {
         button.tintColor = UIColor.white
     }
     
-    static func styleHollowButton(_ button:UIButton) {
+    static func styleHollowButton(_ button: UIButton) {
         
         // Hollow rounded corner style
         button.layer.borderWidth = 2
@@ -36,19 +36,19 @@ class Utilities {
         button.tintColor = UIColor.black
     }
     
-    static func enabledButton(_ button:UIButton) {
+    static func enabledButton(_ button: UIButton) {
         
         button.layer.backgroundColor = UIColor.systemBlue.cgColor
         button.setTitleColor(.white, for: .normal)
     }
     
-    static func disabledButton(_ button:UIButton) {
+    static func disabledButton(_ button: UIButton) {
         
         button.layer.backgroundColor = UIColor.systemGray.cgColor
         button.setTitleColor(.white, for: .normal)
     }
     
-    static func isPasswordValid(_ password:String) -> Bool {
+    static func isPasswordValid(_ password: String) -> Bool {
         
         let passwordTest = NSPredicate(format: "SELF MATCHES %@", "^(?=.*[a-z])(?=.*[0-9])(?=.*[$@$#!%*?&])[A-Za-z\\d$@$#!%*?&]{8,}")
         return passwordTest.evaluate(with: password)

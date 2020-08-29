@@ -1,11 +1,3 @@
-//
-//  FinalViewController.swift
-//  PreFlightChecklist
-//
-//  Created by Andrii Pohodin on 21.07.2020.
-//  Copyright © 2020 Andrii Pohodin. All rights reserved.
-//
-
 import UIKit
 
 class FinalViewController: UIViewController {

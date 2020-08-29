@@ -21,7 +21,6 @@ struct Constants {
     struct Storyboard {
         
         static let firstVC = "FirstViewController"
-        static let mainVC = "MainViewController"
     }
     
     struct Segues {

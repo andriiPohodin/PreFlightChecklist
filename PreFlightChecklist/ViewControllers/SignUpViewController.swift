@@ -1,11 +1,3 @@
-//
-//  SignUpViewController.swift
-//  PreFlightChecklist
-//
-//  Created by Andrii Pohodin on 21.07.2020.
-//  Copyright © 2020 Andrii Pohodin. All rights reserved.
-//
-
 import UIKit
 import FirebaseAuth
 import Firebase
@@ -43,6 +35,11 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         if parent == nil {
             navigationController?.isNavigationBarHidden = true
         }
+    }
+    
+    func popRootVC() {
+        
+        navigationController?.popToRootViewController(animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -107,6 +104,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 }
                             }
                             Settings.userDidLogIn((self?.emailTextField.text)!)
+                            self?.popRootVC()
                         }
                     }
                 }
@@ -123,6 +121,5 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUpBtnAction(_ sender: UIButton) {
         
         validateFields()
-        performSegue(withIdentifier: Constants.Segues.signUpToMain, sender: nil)
     }
 }
