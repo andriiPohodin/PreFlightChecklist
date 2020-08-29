@@ -11,38 +11,50 @@ import UIKit
 class Settings {
     
     static let defaults = UserDefaults.standard
-    static let storyBoard = UIStoryboard(name: "Main", bundle: nil)
     
     static func userDidLogIn(_ userName:String) {
         defaults.set(userName, forKey: "userName")
     }
     
     static func userDidLogOut() {
-        defaults.set("", forKey: "userName")
+        defaults.removeObject(forKey: "userName")
     }
     
-    static func ifUserLogedIn() {
-        if defaults.string(forKey: "userName") == "" {
-            showFirstVC()
-        }
-        else {
-            showMainVC()
-        }
-    }
+//    static func ifUserLogedIn() {
+//        if defaults.value(forKey: "userName") != nil {
+//            showMainVC()
+//        }
+//        else {
+//            showFirstVC()
+//        }
+//    }
     
+//    static func showFirstVC() {
+//        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.firstVC)
+//        let navigationVC = UINavigationController(rootViewController: vc)
+//        let share = UIApplication.shared.delegate as? AppDelegate
+//        share?.window?.rootV
+        
+//        let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.firstVC) as? FirstViewController
+//        let navigationVC = UINavigationController(rootViewController: vc!)
+//        navigationVC.pushViewController(vc!, animated: false)
+//        navigationVC.modalPresentationStyle = .fullScreen
+//        window.rootViewController = navigationVC
+//        window.makeKeyAndVisible()
+        
+//        guard let vc = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.firstVC) as? FirstViewController
+//            else { return }
+//        let navigationVC = UINavigationController(rootViewController: vc)
+//        navigationVC.modalPresentationStyle = .fullScreen
+//        DispatchQueue.main.async {
+//            self.present(navigationVC, animated: false)
+//        }
+//    }
+//
     static func showMainVC() {
-        guard let vc = storyBoard.instantiateViewController(identifier: Constants.Storyboard.firstVC) as? MainViewController
-            else { return }
-        let navigationVC = UINavigationController(rootViewController: vc)
-        navigationVC.modalPresentationStyle = .fullScreen
-        vc.present(navigationVC, animated: false)
-    }
-    
-    static func showFirstVC() {
-        guard let vc = storyBoard.instantiateViewController(identifier: Constants.Storyboard.firstVC) as? FirstViewController
-            else { return }
-        let navigationVC = UINavigationController(rootViewController: vc)
-        navigationVC.modalPresentationStyle = .fullScreen
-        vc.present(navigationVC, animated: false)
+//        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+//        guard let vc = storyboard.instantiateViewController(identifier: Constants.Storyboard.mainVC) as? MainViewController
+//            else { return }
+//        let navigationVC = UINavigationController(rootViewController: vc)
     }
 }

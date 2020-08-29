@@ -117,8 +117,8 @@
 				180BACB424C6C2DF0012EE8C /* FirstViewController.swift */,
 				180BACC824C6C3480012EE8C /* SignUpViewController.swift */,
 				180BACCA24C6C3570012EE8C /* LogInViewController.swift */,
-				180BACCC24C6C3630012EE8C /* MainViewController.swift */,
 				182C7BD524E588C100641EA8 /* LogOutViewController.swift */,
+				180BACCC24C6C3630012EE8C /* MainViewController.swift */,
 				180BACCE24C6C37B0012EE8C /* ProgramPartViewController.swift */,
 				180BACD024C6C38B0012EE8C /* FinalViewController.swift */,
 			);

@@ -25,7 +25,13 @@ class ProgramPartViewController: UIViewController {
         setUpElements()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.isNavigationBarHidden = false
+    }
+    
     override func willMove(toParent parent: UIViewController?) {
+        
         if parent == nil {
             navigationController?.isNavigationBarHidden = true
         }
@@ -55,7 +61,6 @@ class ProgramPartViewController: UIViewController {
         indoorLabel.text = "indoorLabelText".localized
         outdoorBtn.setTitle("outdoorBtnTitle".localized, for: .normal)
         outdoorLabel.text = "outdoorLabelText".localized
-        navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func indoorBtnAction(_ sender: UIButton) {

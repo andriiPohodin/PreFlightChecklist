@@ -31,6 +31,11 @@ class MainViewController: UIViewController {
         getDropDownData()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+        navigationController?.isNavigationBarHidden = true
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
@@ -70,7 +75,6 @@ class MainViewController: UIViewController {
         nextBtn.setTitle("nextBtnTitle".localized, for: .normal)
         Utilities.disabledButton(nextBtn)
         nextBtn.layer.borderColor = UIColor.red.cgColor
-        navigationController?.isNavigationBarHidden = true
     }
     
     func getDropDownData() {
@@ -87,10 +91,10 @@ class MainViewController: UIViewController {
             let programList = programs.map { $0.programName.localized }
             self?.programDropDown.optionArray = programList.removeDuplicates()
         }
-        programDropDown.didSelect { (selectedText , index ,id) in
-            self.selectedProgramName = selectedText
-            self.programDropDown.layer.borderWidth = 0
-            Utilities.enabledButton(self.nextBtn)
+        programDropDown.didSelect { [weak self] (selectedText , index ,id) in
+            self?.selectedProgramName = selectedText
+            self?.programDropDown.layer.borderWidth = 0
+            Utilities.enabledButton((self?.nextBtn)!)
         }
     }
     
@@ -98,10 +102,6 @@ class MainViewController: UIViewController {
         
         programDropDown.text = ""
         selectedProgramName = ""
-    }
-    
-    @IBAction func accountBtnAction(_ sender: UIButton) {
-        
     }
     
     @IBAction func nextBtnAction(_ sender: UIButton) {

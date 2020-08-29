@@ -21,15 +21,23 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ifUserLogedIn()
         setUpElements()
         setUpVideo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        navigationController?.isNavigationBarHidden = true
         videoPlayer?.playImmediately(atRate: 2)
     }
     
+    func ifUserLogedIn() {
+        if Settings.defaults.value(forKey: "userName") != nil {
+            guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainVC) as? MainViewController
+                else { return }
+        }
+    }
     
     func setUpElements() {
         

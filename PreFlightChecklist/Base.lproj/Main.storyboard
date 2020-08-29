@@ -10,7 +10,7 @@
         <!--First View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController storyboardIdentifier="firstVC" id="BYZ-38-t0r" customClass="FirstViewController" customModule="PreFlightChecklist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FirstViewController" id="BYZ-38-t0r" customClass="FirstViewController" customModule="PreFlightChecklist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -261,7 +261,7 @@
         <!--Home-->
         <scene sceneID="dAI-xB-0eh">
             <objects>
-                <viewController storyboardIdentifier="homeVC" id="N3k-SV-kqV" customClass="MainViewController" customModule="PreFlightChecklist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainViewController" id="N3k-SV-kqV" customClass="MainViewController" customModule="PreFlightChecklist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4US-VP-lcw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -491,7 +491,7 @@
         <!--Account-->
         <scene sceneID="KYr-p8-oMf">
             <objects>
-                <viewController id="rUW-DP-sYC" customClass="LogOutViewController" customModule="PreFlightChecklist" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="logOutVc" id="rUW-DP-sYC" customClass="LogOutViewController" customModule="PreFlightChecklist" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="zSg-fV-RDs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -685,6 +685,7 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="kPQ-kG-MhU"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="yCO-Ob-9Wl">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>

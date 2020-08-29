@@ -33,17 +33,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         setUpElements()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
+    override func viewWillAppear(_ animated: Bool) {
         
-        switch segue.identifier {
-        case Constants.Segues.signUpToMain:
-            let destinationVC = segue.destination as? LogOutViewController
-            guard let userName = emailTextField.text
-                else { return }
-            destinationVC?.userName = userName
-        default:
-            break
+        navigationController?.isNavigationBarHidden = false
+    }
+    
+    override func willMove(toParent parent: UIViewController?) {
+        
+        if parent == nil {
+            navigationController?.isNavigationBarHidden = true
         }
     }
     
@@ -96,20 +94,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             if Utilities.isPasswordValid(password) == true {
                 if password == confirmPassword {
-                    Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
+                    Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, err) in
                         if err != nil {
                             let localizedErr = err?.localizedDescription
-                            self.showError(localizedErr!.localized)
+                            self?.showError(localizedErr!.localized)
                         }
                         else {
                             let db = Firestore.firestore()
                             db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
                                 if err != nil {
-                                    self.showError(err!.localizedDescription)
+                                    self?.showError(err!.localizedDescription)
                                 }
                             }
-                            self.performSegue(withIdentifier: Constants.Segues.signUpToMain, sender: nil)
-                            Settings.userDidLogIn(self.emailTextField.text!)
+                            Settings.userDidLogIn((self?.emailTextField.text)!)
                         }
                     }
                 }
@@ -126,5 +123,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBAction func signUpBtnAction(_ sender: UIButton) {
         
         validateFields()
+        performSegue(withIdentifier: Constants.Segues.signUpToMain, sender: nil)
     }
 }
