@@ -19,13 +19,12 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpElements()
         getDropDownData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        ifUserLogedIn()
+        setUpElements()
         navigationController?.isNavigationBarHidden = true
     }
     
@@ -44,14 +43,6 @@ class MainViewController: UIViewController {
             destinationVC?.outdoorPart = outdoorProgram.stepData
         default:
             break
-        }
-    }
-    
-    func ifUserLogedIn() {
-        if Settings.defaults.value(forKey: Settings.userName) == nil {
-            guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.firstVC) as? FirstViewController
-                else { return }
-            navigationController?.pushViewController(vc, animated: false)
         }
     }
     

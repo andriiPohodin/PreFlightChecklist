@@ -37,9 +37,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func popRootVC() {
-        
-        navigationController?.popToRootViewController(animated: true)
+    func pushMainVC() {
+
+        guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainVC)
+            else { return }
+        guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
+            else { return }
+        navigationController?.pushViewController(vc, animated: false)
+        navigationController?.pushViewController(tabBar, animated: false)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -104,7 +109,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 }
                             }
                             Settings.userDidLogIn((self?.emailTextField.text)!)
-                            self?.popRootVC()
+                            self?.pushMainVC()
                         }
                     }
                 }

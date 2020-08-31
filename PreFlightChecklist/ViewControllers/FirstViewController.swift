@@ -13,13 +13,26 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tabBarController?.hidesBottomBarWhenPushed = true
         setUpElements()
         setUpVideo()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        ifUserLogedIn()
         videoPlayer?.playImmediately(atRate: 2)
+    }
+    
+    func ifUserLogedIn() {
+        if Settings.defaults.value(forKey: Settings.userName) != nil {
+            guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainVC)
+                else { return }
+            guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
+                else { return }
+            navigationController?.pushViewController(vc, animated: false)
+            navigationController?.pushViewController(tabBar, animated: false)
+        }
     }
     
     func setUpElements() {

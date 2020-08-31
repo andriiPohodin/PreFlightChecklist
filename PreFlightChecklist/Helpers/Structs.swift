@@ -20,7 +20,10 @@ struct Constants {
     
     struct Storyboard {
         
+        static let mainVC = "MainViewController"
         static let firstVC = "FirstViewController"
+        static let tabBarVC = "tabBarVC"
+        static let navVC = "navVC"
     }
     
     struct Segues {

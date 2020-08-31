@@ -11,9 +11,7 @@ class LogOutViewController: UIViewController {
     
     @IBAction func action(_ sender: UIButton) {
         
-        guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.firstVC) as? FirstViewController
-            else { return }
-        navigationController?.pushViewController(vc, animated: true)
+        navigationController?.popToRootViewController(animated: true)
         Settings.userDidLogOut()
     }
 }
