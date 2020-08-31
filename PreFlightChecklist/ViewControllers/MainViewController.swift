@@ -25,7 +25,6 @@ class MainViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         
         setUpElements()
-        navigationController?.isNavigationBarHidden = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -67,6 +66,7 @@ class MainViewController: UIViewController {
         nextBtn.setTitle("nextBtnTitle".localized, for: .normal)
         Utilities.disabledButton(nextBtn)
         nextBtn.layer.borderColor = UIColor.red.cgColor
+        navigationController?.isNavigationBarHidden = true
     }
     
     func getDropDownData() {

@@ -13,32 +13,30 @@ class Settings {
         defaults.removeObject(forKey: userName)
     }
     
-//    static func pushMainVC(_ storyBoard:UIStoryboard?, _ navVC:UINavigationController?, _ tabBarVC:UITabBarController?) {
-//        guard let mainStoryBoard = storyBoard
-//            else { return }
-//        guard let navigationVC = navVC
-//            else { return }
-//        guard let tabBar = tabBarVC
-//            else { return }
-//        let mainVC = mainStoryBoard.instantiateViewController(identifier: Constants.Storyboard.mainVC) as MainViewController
-//        navigationVC.pushViewController(mainVC, animated: false)
-//        navigationVC.pushViewController(tabBar, animated: false)
-//    }
+    static func ifUserLoggedIn(_ window:UIWindow?) {
+        let window = window
+        if Settings.defaults.value(forKey: Settings.userName) != nil {
+            guard let navigationVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.navVC) as? UINavigationController
+                else { return }
+            guard let tabBarVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
+                else { return }
+            window?.rootViewController = navigationVC
+            navigationVC.pushViewController(tabBarVC, animated: false)
+            window?.makeKeyAndVisible()
+        }
+        else {
+            guard let navigationVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.navVC) as? UINavigationController
+                else { return }
+            window?.rootViewController = navigationVC
+            window?.makeKeyAndVisible()
+        }
+    }
     
-//    static func pushMainVC() {
-//
-//        let window = UIWindow(frame: UIScreen.main.bounds)
-//        let storyBoard = UIStoryboard(name: "Main", bundle: Bundle.main)
-//        guard let navigationVC = storyBoard.instantiateViewController(identifier: Constants.Storyboard.navVC) as? UINavigationController
+//    static func goToMainVC() {
+//        guard let navigationVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.navVC) as? UINavigationController
 //            else { return }
-//        guard let tabBarVC = storyBoard.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
+//        guard let tabBarVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
 //            else { return }
-//        guard let mainVC = storyBoard.instantiateViewController(identifier: Constants.Storyboard.mainVC) as? MainViewController
-//            else { return }
-//        navigationVC.pushViewController(mainVC, animated: false)
 //        navigationVC.pushViewController(tabBarVC, animated: false)
-//        window.rootViewController = navigationVC
-//        window.makeKeyAndVisible()
 //    }
-    
 }

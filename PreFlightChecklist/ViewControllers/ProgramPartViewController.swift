@@ -14,19 +14,11 @@ class ProgramPartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpElements()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
-        navigationController?.isNavigationBarHidden = false
-    }
-    
-    override func willMove(toParent parent: UIViewController?) {
-        
-        if parent == nil {
-            navigationController?.isNavigationBarHidden = true
-        }
+        setUpElements()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -53,6 +45,7 @@ class ProgramPartViewController: UIViewController {
         indoorLabel.text = "indoorLabelText".localized
         outdoorBtn.setTitle("outdoorBtnTitle".localized, for: .normal)
         outdoorLabel.text = "outdoorLabelText".localized
+        navigationController?.isNavigationBarHidden = false
     }
     
     @IBAction func indoorBtnAction(_ sender: UIButton) {

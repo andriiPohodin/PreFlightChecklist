@@ -22,29 +22,19 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
         organizationTextField.delegate = self
-        setUpElements()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        setUpElements()
         navigationController?.isNavigationBarHidden = false
     }
     
-    override func willMove(toParent parent: UIViewController?) {
-        
-        if parent == nil {
-            navigationController?.isNavigationBarHidden = true
-        }
-    }
-    
-    func pushMainVC() {
+    func goToMainVC() {
 
-        guard let vc = storyboard?.instantiateViewController(identifier: Constants.Storyboard.mainVC)
-            else { return }
         guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
             else { return }
-        navigationController?.pushViewController(vc, animated: false)
-        navigationController?.pushViewController(tabBar, animated: false)
+        navigationController?.pushViewController(tabBar, animated: true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -109,7 +99,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 }
                             }
                             Settings.userDidLogIn((self?.emailTextField.text)!)
-                            self?.pushMainVC()
+                            self?.goToMainVC()
                         }
                     }
                 }
