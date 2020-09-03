@@ -11,7 +11,14 @@ class LogOutViewController: UIViewController {
     
     @IBAction func action(_ sender: UIButton) {
         
-        navigationController?.popToRootViewController(animated: true)
-        Settings.userDidLogOut()
+        let alertVC = UIAlertController(title: "Logout", message: "Are you sure?", preferredStyle: .alert)
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+            self?.navigationController?.popToRootViewController(animated: true)
+            Settings.userDidLogOut()
+        }
+        let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
+        alertVC.addAction(yesAction)
+        alertVC.addAction(noAction)
+        present(alertVC, animated: true, completion: nil)
     }
 }

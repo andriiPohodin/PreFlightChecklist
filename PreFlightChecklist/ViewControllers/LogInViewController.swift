@@ -31,7 +31,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let firstResponder = view.window?.firstResponder
-        firstResponder!.resignFirstResponder()
+        switch firstResponder {
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+            validateFields()
+        default: break
+        }
         return true
     }
     

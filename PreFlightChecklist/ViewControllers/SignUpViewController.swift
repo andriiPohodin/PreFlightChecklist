@@ -40,7 +40,22 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         let firstResponder = view.window?.firstResponder
-        firstResponder!.resignFirstResponder()
+        switch firstResponder {
+        case firstNameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            confirmPasswordTextField.becomeFirstResponder()
+        case confirmPasswordTextField:
+            organizationTextField.becomeFirstResponder()
+        case organizationTextField:
+            organizationTextField.resignFirstResponder()
+            validateFields()
+        default: break
+        }
         return true
     }
     
@@ -93,7 +108,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                         }
                         else {
                             let db = Firestore.firestore()
-                            db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
+                            db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { [weak self] (err) in
                                 if err != nil {
                                     self?.showError(err!.localizedDescription)
                                 }
