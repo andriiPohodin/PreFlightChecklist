@@ -21,6 +21,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         navigationController?.isNavigationBarHidden = false
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
     func goToMainVC() {
         
         guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
@@ -30,8 +34,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-        let firstResponder = view.window?.firstResponder
-        switch firstResponder {
+//        let firstResponder = view.window?.firstResponder
+        switch textField {
         case emailTextField:
             passwordTextField.becomeFirstResponder()
         case passwordTextField:
