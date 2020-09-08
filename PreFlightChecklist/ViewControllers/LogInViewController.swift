@@ -75,8 +75,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 let document = querySnapshot!.documents.first
                 let dataDescription = document?.data()
                 guard let firstName = dataDescription?["firstName"] else { return }
-                Settings.defaults.set(firstName, forKey: Settings.userName)
-//                print(firstname)
+                Settings.setUserName(firstName as! String)
             }
         }
     }
@@ -96,7 +95,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     self?.showError(localizedErr!.localized)
                 }
                 else {
-                    Settings.didLogIn(true)
+//                    Settings.didLogIn(true)
                     self?.getUserName()
                     self?.goToMainVC()
                 }

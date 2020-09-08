@@ -145,8 +145,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                     self?.showError(err!.localizedDescription)
                                 }
                             }
-                            Settings.didLogIn(true)
-                            Settings.getUserName(firstName)
+                            Settings.setUserName(firstName)
                             self?.goToMainVC()
                         }
                     }
