@@ -1,5 +1,6 @@
 import UIKit
 import FirebaseAuth
+import Firebase
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
@@ -53,6 +54,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         Utilities.styleFilledButton(logInBtn)
         logInBtn.setTitle("logIn".localized, for: .normal)
         emailTextField.placeholder = "email".localized
+        emailTextField.becomeFirstResponder()
         passwordTextField.placeholder = "password".localized
     }
     
@@ -60,6 +62,23 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         errorLabel.text = message
         errorLabel.alpha = 1
+    }
+    
+    private func getUserName() {
+        
+        let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
+        docRef.getDocuments { (querySnapshot, err) in
+            if let err = err {
+                print(err.localizedDescription)
+            }
+            else {
+                let document = querySnapshot!.documents.first
+                let dataDescription = document?.data()
+                guard let firstName = dataDescription?["firstName"] else { return }
+                Settings.defaults.set(firstName, forKey: Settings.userName)
+//                print(firstname)
+            }
+        }
     }
     
     func validateFields() {
@@ -77,12 +96,14 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     self?.showError(localizedErr!.localized)
                 }
                 else {
-                    Settings.userDidLogIn((self?.emailTextField.text)!)
+                    Settings.didLogIn(true)
+                    self?.getUserName()
                     self?.goToMainVC()
                 }
             }
         }
     }
+    
     
     @IBAction func logInBtnAction(_ sender: UIButton) {
         

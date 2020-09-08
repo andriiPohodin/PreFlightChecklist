@@ -13,8 +13,9 @@ class LogOutViewController: UIViewController {
         
         let alertVC = UIAlertController(title: "Logout", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
+            Settings.didLogIn(false)
+            Settings.removeUserName()
             self?.navigationController?.popToRootViewController(animated: true)
-            Settings.userDidLogOut()
         }
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
         alertVC.addAction(yesAction)

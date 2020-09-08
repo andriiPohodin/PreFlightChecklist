@@ -102,6 +102,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         Utilities.styleFilledButton(signUpBtn)
         signUpBtn.setTitle("signUp".localized, for: .normal)
         firstNameTextField.placeholder = "firstName".localized
+        firstNameTextField.becomeFirstResponder()
         lastNameTextField.placeholder = "lastName".localized
         emailTextField.placeholder = "email".localized
         passwordTextField.placeholder = "password".localized
@@ -127,7 +128,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let confirmPassword = confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines)
+            let confirmPassword = confirmPasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let organization = organizationTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             if Utilities.isPasswordValid(password) == true {
@@ -144,7 +145,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                     self?.showError(err!.localizedDescription)
                                 }
                             }
-                            Settings.userDidLogIn((self?.emailTextField.text)!)
+                            Settings.didLogIn(true)
+                            Settings.getUserName(firstName)
                             self?.goToMainVC()
                         }
                     }

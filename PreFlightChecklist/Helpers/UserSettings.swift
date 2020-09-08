@@ -4,18 +4,24 @@ class Settings {
     
     static let defaults = UserDefaults.standard
     static let userName = "user"
+    static let isLoggedIn = "isLoggedIn"
     
-    static func userDidLogIn(_ user:String) {
-        defaults.set(user, forKey: userName)
+    static func getUserName(_ name:String) {
+        defaults.set(name, forKey: userName)
     }
     
-    static func userDidLogOut() {
+    static func removeUserName() {
         defaults.removeObject(forKey: userName)
     }
     
-    static func ifUserLoggedIn(_ window:UIWindow?) {
+    static func didLogIn(_ didLogIn:Bool) {
+        defaults.set(didLogIn, forKey: isLoggedIn)
+        print(didLogIn)
+    }
+    
+    static func ifLoggedIn(_ window:UIWindow?) {
         let window = window
-        if Settings.defaults.value(forKey: Settings.userName) != nil {
+        if Settings.defaults.bool(forKey: Settings.isLoggedIn) == true {
             guard let navigationVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.navVC) as? UINavigationController
                 else { return }
             guard let tabBarVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
