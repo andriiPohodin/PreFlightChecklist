@@ -471,45 +471,74 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io7-L5-LY0">
-                                <rect key="frame" x="137.5" y="259" width="100" height="100"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yW7-sY-KKt">
+                                <rect key="frame" x="87.5" y="139" width="200" height="340"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQE-N7-nbb">
+                                        <rect key="frame" x="0.0" y="0.0" width="200" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="miu-I7-mlG"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Matrice 210 V2 RTK" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-ZS-els">
+                                        <rect key="frame" x="0.0" y="70" width="200" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="9WK-Ii-Pqr"/>
+                                            <constraint firstAttribute="width" secondItem="fpI-ZS-els" secondAttribute="height" multiplier="1:1" id="VMy-VB-q37"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6S-Zv-5uH">
+                                        <rect key="frame" x="0.0" y="290" width="200" height="50"/>
+                                        <state key="normal" title="Add Profile photo"/>
+                                        <connections>
+                                            <action selector="addPhotoAction:" destination="rUW-DP-sYC" eventType="touchUpInside" id="wcp-1H-TCQ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="Io7-L5-LY0" secondAttribute="height" multiplier="1:1" id="2v7-jY-mZy"/>
-                                    <constraint firstAttribute="height" constant="100" id="weO-q4-vHh"/>
+                                    <constraint firstItem="c6S-Zv-5uH" firstAttribute="height" secondItem="tQE-N7-nbb" secondAttribute="height" id="GAY-nu-gkl"/>
+                                    <constraint firstItem="c6S-Zv-5uH" firstAttribute="width" secondItem="tQE-N7-nbb" secondAttribute="width" id="HZn-mk-52B"/>
+                                    <constraint firstItem="tQE-N7-nbb" firstAttribute="top" secondItem="yW7-sY-KKt" secondAttribute="top" id="JQn-tK-dkr"/>
+                                    <constraint firstAttribute="trailing" secondItem="tQE-N7-nbb" secondAttribute="trailing" id="KRG-gn-N7Q"/>
+                                    <constraint firstItem="tQE-N7-nbb" firstAttribute="leading" secondItem="yW7-sY-KKt" secondAttribute="leading" id="s5Y-PG-DGp"/>
                                 </constraints>
-                                <state key="normal" title="Button"/>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io7-L5-LY0">
+                                <rect key="frame" x="290" y="10" width="75" height="45"/>
+                                <state key="normal" title="Sign Out">
+                                    <color key="titleColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
-                                    <action selector="action:" destination="rUW-DP-sYC" eventType="touchUpInside" id="WDH-O0-DJc"/>
+                                    <action selector="signOutAction:" destination="rUW-DP-sYC" eventType="touchUpInside" id="vgE-0e-yXx"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tQE-N7-nbb">
-                                <rect key="frame" x="20" y="58" width="335" height="50"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="ke0-r5-Q9Z"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Io7-L5-LY0" firstAttribute="centerX" secondItem="053-74-uCh" secondAttribute="centerX" id="8LF-mL-OJg"/>
-                            <constraint firstItem="Io7-L5-LY0" firstAttribute="centerY" secondItem="053-74-uCh" secondAttribute="centerY" id="Dwu-Yf-Aob"/>
-                            <constraint firstItem="053-74-uCh" firstAttribute="trailing" secondItem="tQE-N7-nbb" secondAttribute="trailing" constant="20" id="WVg-Ok-VFa"/>
-                            <constraint firstItem="tQE-N7-nbb" firstAttribute="top" secondItem="053-74-uCh" secondAttribute="top" constant="58" id="b8B-u8-rSa"/>
-                            <constraint firstItem="tQE-N7-nbb" firstAttribute="leading" secondItem="053-74-uCh" secondAttribute="leading" constant="20" id="ifP-Kn-w8L"/>
+                            <constraint firstItem="Io7-L5-LY0" firstAttribute="top" secondItem="053-74-uCh" secondAttribute="top" constant="10" id="6oQ-c7-Grf"/>
+                            <constraint firstItem="053-74-uCh" firstAttribute="trailing" secondItem="Io7-L5-LY0" secondAttribute="trailing" constant="10" id="HE2-5J-IwK"/>
+                            <constraint firstItem="Io7-L5-LY0" firstAttribute="width" secondItem="zSg-fV-RDs" secondAttribute="width" multiplier="0.2" id="HoW-SP-wuL"/>
+                            <constraint firstItem="Io7-L5-LY0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="053-74-uCh" secondAttribute="leading" symbolic="YES" id="RMh-lN-jFf"/>
+                            <constraint firstItem="yW7-sY-KKt" firstAttribute="centerY" secondItem="053-74-uCh" secondAttribute="centerY" id="azS-UQ-Viw"/>
+                            <constraint firstItem="Io7-L5-LY0" firstAttribute="height" secondItem="zSg-fV-RDs" secondAttribute="height" multiplier="0.0674663" id="bZ9-fU-mLg"/>
+                            <constraint firstItem="yW7-sY-KKt" firstAttribute="centerX" secondItem="053-74-uCh" secondAttribute="centerX" id="z1f-bM-c8Y"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="053-74-uCh"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Account" image="book.fill" catalog="system" id="DmJ-Bg-sCc"/>
                     <connections>
+                        <outlet property="addPhotoBtn" destination="c6S-Zv-5uH" id="CCo-zT-ur0"/>
                         <outlet property="label" destination="tQE-N7-nbb" id="j7v-Kp-5S7"/>
+                        <outlet property="profileImage" destination="fpI-ZS-els" id="Pah-Pn-aZK"/>
+                        <outlet property="signOutBtn" destination="Io7-L5-LY0" id="zeh-tT-3aV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qej-CA-W1N" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2313" y="814"/>
+            <point key="canvasLocation" x="2312.8000000000002" y="813.64317841079469"/>
         </scene>
         <!--Final View Controller-->
         <scene sceneID="NfB-z6-ihr">
@@ -674,6 +703,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Matrice 210 V2 RTK" width="1024" height="1024"/>
         <image name="book.fill" catalog="system" width="128" height="100"/>
         <image name="disclosureIndicator" width="22" height="40"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>

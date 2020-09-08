@@ -1,19 +1,28 @@
 import UIKit
 
 class LogOutViewController: UIViewController {
+    @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var addPhotoBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        label.text = Settings.defaults.string(forKey: Settings.userName)
+        setUpElements()
     }
     
-    @IBAction func action(_ sender: UIButton) {
+    func setUpElements() {
         
-        let alertVC = UIAlertController(title: "Logout", message: "Are you sure?", preferredStyle: .alert)
+        label.text = "Welcome, \(Settings.defaults.string(forKey: Settings.userName) ?? "")"
+        profileImage.layer.cornerRadius = profileImage.frame.height/2
+    }
+    
+    @IBAction func signOutAction(_ sender: UIButton) {
+        
+        let alertVC = UIAlertController(title: "Sign out", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { [weak self] _ in
-//            Settings.didLogIn(false)
+            //            Settings.didLogIn(false)
             Settings.removeUserName()
             self?.navigationController?.popToRootViewController(animated: true)
         }
@@ -21,5 +30,9 @@ class LogOutViewController: UIViewController {
         alertVC.addAction(yesAction)
         alertVC.addAction(noAction)
         present(alertVC, animated: true, completion: nil)
+    }
+    
+    @IBAction func addPhotoAction(_ sender: UIButton) {
+        
     }
 }
