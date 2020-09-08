@@ -71,16 +71,12 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             emailTextField.becomeFirstResponder()
         case emailTextField:
             passwordTextField.becomeFirstResponder()
-            view.frame.origin.y = -textField.frame.height
         case passwordTextField:
             confirmPasswordTextField.becomeFirstResponder()
-            view.frame.origin.y = -textField.frame.height*2
         case confirmPasswordTextField:
             organizationTextField.becomeFirstResponder()
-            view.frame.origin.y = -textField.frame.height*3
         case organizationTextField:
             organizationTextField.resignFirstResponder()
-            view.frame.origin.y = 0
             validateFields()
         default: break
         }
