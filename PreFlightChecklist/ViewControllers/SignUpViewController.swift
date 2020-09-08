@@ -22,6 +22,14 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.delegate = self
         confirmPasswordTextField.delegate = self
         organizationTextField.delegate = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange), name: UIResponder.keyboardDidShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    deinit {
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,16 +42,28 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    func goToMainVC() {
-
-        guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
+    @objc func keyboardWillChange(notification: Notification) {
+        
+        switch notification.name {
+        case UIResponder.keyboardDidShowNotification:
+            if passwordTextField.isFirstResponder {
+                view.frame.origin.y = -passwordTextField.frame.height
+            }
+            else if confirmPasswordTextField.isFirstResponder {
+                view.frame.origin.y = -confirmPasswordTextField.frame.height*2
+            }
+            else if organizationTextField.isFirstResponder {
+                view.frame.origin.y = -organizationTextField.frame.height*3
+            }
             else { return }
-        navigationController?.pushViewController(tabBar, animated: true)
+        case UIResponder.keyboardWillHideNotification:
+            view.frame.origin.y = 0
+        default: break
+        }
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
-//        let firstResponder = view.window?.firstResponder
         switch textField {
         case firstNameTextField:
             lastNameTextField.becomeFirstResponder()
@@ -51,16 +71,27 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             emailTextField.becomeFirstResponder()
         case emailTextField:
             passwordTextField.becomeFirstResponder()
+            view.frame.origin.y = -textField.frame.height
         case passwordTextField:
             confirmPasswordTextField.becomeFirstResponder()
+            view.frame.origin.y = -textField.frame.height*2
         case confirmPasswordTextField:
             organizationTextField.becomeFirstResponder()
+            view.frame.origin.y = -textField.frame.height*3
         case organizationTextField:
             organizationTextField.resignFirstResponder()
+            view.frame.origin.y = 0
             validateFields()
         default: break
         }
         return true
+    }
+    
+    func goToMainVC() {
+        
+        guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
+            else { return }
+        navigationController?.pushViewController(tabBar, animated: true)
     }
     
     func setUpElements() {
