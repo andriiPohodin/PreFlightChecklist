@@ -39,7 +39,7 @@ class ProgramPartViewController: UIViewController {
         }
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         indoorBtn.setTitle("indoorBtnTitle".localized, for: .normal)
         indoorLabel.text = "indoorLabelText".localized

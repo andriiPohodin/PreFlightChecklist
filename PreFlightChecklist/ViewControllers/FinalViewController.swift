@@ -23,7 +23,7 @@ class FinalViewController: UIViewController {
         setUpElements()
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         maxNumberOfSteps = lessonToShow.count
         guard let firstStep = lessonToShow.first(where: { $0.stepNumber == defaultStep }) else { return }
@@ -36,7 +36,7 @@ class FinalViewController: UIViewController {
         currentStep = defaultStep
     }
     
-    func stepForward() {
+    private func stepForward() {
         
         guard let stepFwd = lessonToShow.first(where: { $0.stepNumber == currentStep + 1 }) else { return }
         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
@@ -45,7 +45,7 @@ class FinalViewController: UIViewController {
         currentStep += 1
     }
     
-    func stepBack() {
+    private func stepBack() {
         
         guard let stepBack = lessonToShow.first(where: { $0.stepNumber == currentStep - 1 }) else { return }
         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
@@ -54,7 +54,7 @@ class FinalViewController: UIViewController {
         currentStep -= 1
     }
     
-    func nextStepOnScreen() {
+    private func nextStepOnScreen() {
         
         switch currentStep {
         case maxNumberOfSteps: break
@@ -76,7 +76,7 @@ class FinalViewController: UIViewController {
         }
     }
     
-    func previousStepOnScreen() {
+    private func previousStepOnScreen() {
         
         switch currentStep {
         case defaultStep: break

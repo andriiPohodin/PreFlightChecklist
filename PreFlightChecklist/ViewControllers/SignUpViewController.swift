@@ -42,7 +42,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
     }
     
-    @objc func keyboardWillChange(notification: Notification) {
+    @objc private func keyboardWillChange(notification: Notification) {
         
         switch notification.name {
         case UIResponder.keyboardDidShowNotification:
@@ -83,7 +83,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         errorLabel.alpha = 0
         Utilities.styleTextField(firstNameTextField)
@@ -110,7 +110,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         errorLabel.alpha = 1
     }
     
-    func validateFields() {
+    private func validateFields() {
         
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||

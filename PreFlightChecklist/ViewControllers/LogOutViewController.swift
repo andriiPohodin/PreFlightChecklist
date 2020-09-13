@@ -17,7 +17,7 @@ class LogOutViewController: UIViewController {
         setUpElements()
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         label.text = "Welcome, \(Settings.defaults.string(forKey: Settings.userName) ?? "")"
         profileImage.layer.cornerRadius = profileImage.frame.height/2

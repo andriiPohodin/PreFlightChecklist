@@ -22,7 +22,7 @@ class FirstViewController: UIViewController {
         setUpElements()
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         Utilities.styleFilledButton(signUpBtn)
         Utilities.styleHollowButton(logInBtn)
@@ -31,7 +31,7 @@ class FirstViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
-    func setUpVideo() {
+    private func setUpVideo() {
         
         guard let bundlePath = Bundle.main.path(forResource: "My Movie", ofType: "mp4") else { return }
         let url = URL(fileURLWithPath: bundlePath)

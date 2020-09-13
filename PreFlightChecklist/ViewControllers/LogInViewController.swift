@@ -39,7 +39,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         errorLabel.alpha = 0
         Utilities.styleTextField(emailTextField)
@@ -74,7 +74,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func validateFields() {
+    private func validateFields() {
         
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
             showError("fillInAllFields".localized)

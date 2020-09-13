@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func setUpElements() {
+    private func setUpElements() {
         
         selectedPlatformName = ""
         selectedProgramName = ""
@@ -67,7 +67,7 @@ class MainViewController: UIViewController {
         navigationController?.isNavigationBarHidden = true
     }
     
-    func getDropDownData() {
+    private func getDropDownData() {
         
         platformDropDown.didSelect { [weak self] (selectedText , index ,id) in
             self?.selectedPlatformName = selectedText
@@ -87,7 +87,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    func resetProgramDropDown() {
+    private func resetProgramDropDown() {
         
         programDropDown.text = ""
         selectedProgramName = ""

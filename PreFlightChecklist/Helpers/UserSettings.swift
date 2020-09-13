@@ -15,11 +15,11 @@ class Settings {
     
     static func ifLoggedIn() {
         
-        switch Settings.defaults.value(forKey: Settings.userName) {
-        case nil:
-            goToFirstVC()
-        default:
+        if Settings.defaults.value(forKey: Settings.userName) != nil {
             goToMainVC()
+        }
+        else if Settings.defaults.value(forKey: Settings.userName) == nil {
+            goToFirstVC()
         }
     }
     
