@@ -23,13 +23,10 @@ class FinalViewController: UIViewController {
         setUpElements()
     }
     
-    //    Default screen + Moves between steps functions
-    
     func setUpElements() {
         
         maxNumberOfSteps = lessonToShow.count
-        guard let firstStep = lessonToShow.first(where: { $0.stepNumber == defaultStep })
-            else { return }
+        guard let firstStep = lessonToShow.first(where: { $0.stepNumber == defaultStep }) else { return }
         stepLabel.text = "Step".localized + " \(firstStep.stepNumber)"
         nextBtn.setTitle("nextBtnTitle".localized, for: .normal)
         Utilities.enabledButton(nextBtn)
@@ -41,8 +38,7 @@ class FinalViewController: UIViewController {
     
     func stepForward() {
         
-        guard let stepFwd = lessonToShow.first(where: { $0.stepNumber == currentStep + 1 })
-            else { return }
+        guard let stepFwd = lessonToShow.first(where: { $0.stepNumber == currentStep + 1 }) else { return }
         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
         stepLabel.text = "Step".localized + " \(stepFwd.stepNumber)"
         mainImage.image = UIImage(named: "\(stepFwd.stepDescription)".localized)
@@ -51,8 +47,7 @@ class FinalViewController: UIViewController {
     
     func stepBack() {
         
-        guard let stepBack = lessonToShow.first(where: { $0.stepNumber == currentStep - 1 })
-            else { return }
+        guard let stepBack = lessonToShow.first(where: { $0.stepNumber == currentStep - 1 }) else { return }
         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
         stepLabel.text = "Step".localized + " \(stepBack.stepNumber)"
         mainImage.image = UIImage(named: "\(stepBack.stepDescription)".localized)
@@ -107,14 +102,17 @@ class FinalViewController: UIViewController {
         
         previousStepOnScreen()
     }
+    
     @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
         
         previousStepOnScreen()
     }
+    
     @IBAction func nextBtnAction(_ sender: UIButton) {
         
         nextStepOnScreen()
     }
+    
     @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
         
         nextStepOnScreen()

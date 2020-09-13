@@ -20,16 +20,12 @@ struct Constants {
     
     struct Storyboard {
         
-        static let mainVC = "MainViewController"
-        static let firstVC = "FirstViewController"
-        static let tabBarVC = "tabBarVC"
-        static let navVC = "navVC"
+        static let main = "Main"
+        static let logIn = "LogIn"
     }
     
     struct Segues {
         
-        static let signUpToMain = "signUpToMainVC"
-        static let logInToMain = "logInToMainVC"
         static let toDetails = "toDetails"
         static let toLesson = "toLesson"
     }

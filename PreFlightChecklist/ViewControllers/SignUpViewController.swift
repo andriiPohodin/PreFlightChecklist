@@ -35,10 +35,10 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         setUpElements()
-        navigationController?.isNavigationBarHidden = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
         view.endEditing(true)
     }
     
@@ -83,13 +83,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    func goToMainVC() {
-        
-        guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
-            else { return }
-        navigationController?.pushViewController(tabBar, animated: true)
-    }
-    
     func setUpElements() {
         
         errorLabel.alpha = 0
@@ -108,6 +101,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.placeholder = "password".localized
         confirmPasswordTextField.placeholder = "confirmPassword".localized
         organizationTextField.placeholder = "organization".localized
+        navigationController?.isNavigationBarHidden = false
     }
     
     func showError (_ message: String) {
@@ -146,7 +140,7 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 }
                             }
                             Settings.setUserName(firstName)
-                            self?.goToMainVC()
+                            Settings.goToMainVC()
                         }
                     }
                 }

@@ -34,11 +34,9 @@ class MainViewController: UIViewController {
         case Constants.Segues.toDetails:
             let destinationVC = segue.destination as? ProgramPartViewController
             let platform = platforms.first(where: { $0.platformName == selectedPlatformName })
-            guard let indoorProgram = platform?.availablePrograms.first(where: { $0.programName.localized == selectedProgramName.localized && $0.isIndoor == true })
-                else { return }
+            guard let indoorProgram = platform?.availablePrograms.first(where: { $0.programName.localized == selectedProgramName.localized && $0.isIndoor == true }) else { return }
             destinationVC?.indoorPart = indoorProgram.stepData
-            guard let outdoorProgram = platform?.availablePrograms.first(where: { $0.programName.localized == selectedProgramName.localized && $0.isIndoor == false })
-                else { return }
+            guard let outdoorProgram = platform?.availablePrograms.first(where: { $0.programName.localized == selectedProgramName.localized && $0.isIndoor == false }) else { return }
             destinationVC?.outdoorPart = outdoorProgram.stepData
         default:
             break
@@ -77,8 +75,7 @@ class MainViewController: UIViewController {
             self?.platformDropDown.layer.borderWidth = 0
             self?.resetProgramDropDown()
             Utilities.disabledButton((self?.nextBtn)!)
-            guard let selectedDrone = self?.platforms.first (where: { $0.platformName == self?.selectedPlatformName })
-                else { return }
+            guard let selectedDrone = self?.platforms.first (where: { $0.platformName == self?.selectedPlatformName }) else { return }
             let programs = selectedDrone.availablePrograms
             let programList = programs.map { $0.programName.localized }
             self?.programDropDown.optionArray = programList.removeDuplicates()

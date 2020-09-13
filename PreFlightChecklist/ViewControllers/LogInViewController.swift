@@ -19,18 +19,11 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     override func viewWillAppear(_ animated: Bool) {
         
         setUpElements()
-        navigationController?.isNavigationBarHidden = false
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-    }
-    
-    func goToMainVC() {
         
-        guard let tabBar = storyboard?.instantiateViewController(identifier: Constants.Storyboard.tabBarVC) as? UITabBarController
-            else { return }
-        navigationController?.pushViewController(tabBar, animated: true)
+        view.endEditing(true)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -56,6 +49,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         emailTextField.placeholder = "email".localized
         emailTextField.becomeFirstResponder()
         passwordTextField.placeholder = "password".localized
+        navigationController?.isNavigationBarHidden = false
     }
     
     func showError (_ message: String) {
@@ -95,14 +89,12 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     self?.showError(localizedErr!.localized)
                 }
                 else {
-//                    Settings.didLogIn(true)
                     self?.getUserName()
-                    self?.goToMainVC()
+                    Settings.goToMainVC()
                 }
             }
         }
     }
-    
     
     @IBAction func logInBtnAction(_ sender: UIButton) {
         

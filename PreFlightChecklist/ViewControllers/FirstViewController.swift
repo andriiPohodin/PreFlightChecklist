@@ -13,13 +13,13 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpVideo()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         
+        setUpVideo()
         setUpElements()
-        videoPlayer?.playImmediately(atRate: 2)
     }
     
     func setUpElements() {
@@ -33,8 +33,7 @@ class FirstViewController: UIViewController {
     
     func setUpVideo() {
         
-        guard let bundlePath = Bundle.main.path(forResource: "My Movie", ofType: "mp4")
-            else { return }
+        guard let bundlePath = Bundle.main.path(forResource: "My Movie", ofType: "mp4") else { return }
         let url = URL(fileURLWithPath: bundlePath)
         let item = AVPlayerItem(url: url)
         videoPlayer = AVQueuePlayer(playerItem: item)
@@ -44,13 +43,13 @@ class FirstViewController: UIViewController {
         playerLooper = AVPlayerLooper(player: videoPlayer!, templateItem: item)
         videoPlayer?.playImmediately(atRate: 2)
     }
+
     @IBAction func signUpAction(_ sender: UIButton) {
         
-        videoPlayer?.pause()
     }
-    @IBAction func logInACtion(_ sender: UIButton) {
+    
+    @IBAction func logInAction(_ sender: UIButton) {
         
-        videoPlayer?.pause()
     }
 }
 
