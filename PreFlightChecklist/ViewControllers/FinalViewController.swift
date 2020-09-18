@@ -2,6 +2,7 @@ import UIKit
 
 class FinalViewController: UIViewController {
     
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var stepLabel: UILabel!
     @IBOutlet weak var mainImage: UIImageView!
@@ -16,6 +17,7 @@ class FinalViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        scrollView.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -40,6 +42,7 @@ class FinalViewController: UIViewController {
         
         guard let stepFwd = lessonToShow.first(where: { $0.stepNumber == currentStep + 1 }) else { return }
         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+        scrollView.zoomScale = 1
         stepLabel.text = "Step".localized + " \(stepFwd.stepNumber)"
         mainImage.image = UIImage(named: "\(stepFwd.stepDescription)".localized)
         currentStep += 1
@@ -49,6 +52,7 @@ class FinalViewController: UIViewController {
         
         guard let stepBack = lessonToShow.first(where: { $0.stepNumber == currentStep - 1 }) else { return }
         scrollView.setContentOffset(CGPoint(x: 0.0, y: 0.0), animated: false)
+        scrollView.zoomScale = 1
         stepLabel.text = "Step".localized + " \(stepBack.stepNumber)"
         mainImage.image = UIImage(named: "\(stepBack.stepDescription)".localized)
         currentStep -= 1
@@ -103,18 +107,26 @@ class FinalViewController: UIViewController {
         previousStepOnScreen()
     }
     
-    @IBAction func swipeRight(_ sender: UISwipeGestureRecognizer) {
-        
-        previousStepOnScreen()
-    }
-    
     @IBAction func nextBtnAction(_ sender: UIButton) {
         
         nextStepOnScreen()
     }
     
-    @IBAction func swipeLeft(_ sender: UISwipeGestureRecognizer) {
-        
-        nextStepOnScreen()
+    @IBAction func swipeAction(_ sender: UISwipeGestureRecognizer) {
+
+        switch sender.direction {
+        case .right:
+            previousStepOnScreen()
+        case .left:
+            nextStepOnScreen()
+        default: break
+        }
+    }
+}
+
+extension FinalViewController: UIScrollViewDelegate {
+    
+    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
+        return contentView
     }
 }

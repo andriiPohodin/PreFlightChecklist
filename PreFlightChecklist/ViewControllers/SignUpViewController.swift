@@ -46,14 +46,23 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         switch notification.name {
         case UIResponder.keyboardDidShowNotification:
-            if passwordTextField.isFirstResponder {
-                view.frame.origin.y = -passwordTextField.frame.height
+            if firstNameTextField.isFirstResponder {
+                view.frame.origin.y = 0
+            }
+            else if lastNameTextField.isFirstResponder {
+                view.frame.origin.y = 0
+            }
+            else if emailTextField.isFirstResponder {
+                view.frame.origin.y = -emailTextField.frame.height
+            }
+            else if passwordTextField.isFirstResponder {
+                view.frame.origin.y = -passwordTextField.frame.height*2
             }
             else if confirmPasswordTextField.isFirstResponder {
                 view.frame.origin.y = -confirmPasswordTextField.frame.height*2
             }
             else if organizationTextField.isFirstResponder {
-                view.frame.origin.y = -organizationTextField.frame.height*3
+                view.frame.origin.y = -organizationTextField.frame.height*2
             }
             else { return }
         case UIResponder.keyboardWillHideNotification:

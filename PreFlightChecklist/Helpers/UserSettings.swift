@@ -6,10 +6,12 @@ class Settings {
     static let userName = "user"
     
     static func setUserName(_ name:String) {
+        
         defaults.set(name, forKey: userName)
     }
     
     static func removeUserName() {
+        
         defaults.removeObject(forKey: userName)
     }
     
@@ -33,5 +35,6 @@ class Settings {
         
         guard let vc = UIStoryboard(name: Constants.Storyboard.logIn, bundle: Bundle.main).instantiateInitialViewController() else { return }
         UIApplication.shared.windows.first?.rootViewController = vc
+        removeUserName()
     }
 }

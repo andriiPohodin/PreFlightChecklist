@@ -29,7 +29,6 @@ class LogOutViewController: UIViewController {
         
         let alertVC = UIAlertController(title: "Sign out", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-            Settings.removeUserName()
             Settings.goToFirstVC()
             
         }
