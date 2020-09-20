@@ -1,6 +1,6 @@
 import UIKit
 
-class Settings {
+class UserSettings {
     
     static let defaults = UserDefaults.standard
     static let userName = "user"
@@ -17,10 +17,10 @@ class Settings {
     
     static func ifLoggedIn() {
         
-        if Settings.defaults.value(forKey: Settings.userName) != nil {
+        if UserSettings.defaults.value(forKey: UserSettings.userName) != nil {
             goToMainVC()
         }
-        else if Settings.defaults.value(forKey: Settings.userName) == nil {
+        else if UserSettings.defaults.value(forKey: UserSettings.userName) == nil {
             goToFirstVC()
         }
     }

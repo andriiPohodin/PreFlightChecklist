@@ -142,9 +142,9 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                     ProgressHUD.showError(err!.localizedDescription)
                                 }
                             }
-                            Settings.setUserName(firstName)
+                            UserSettings.setUserName(firstName)
                             ProgressHUD.dismiss()
-                            Settings.goToMainVC()
+                            UserSettings.goToMainVC()
                         }
                     }
                 }

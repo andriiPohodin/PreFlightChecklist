@@ -22,7 +22,7 @@ class LogOutViewController: UIViewController {
     
     private func setUpElements() {
         
-        label.text = "Welcome, \(Settings.defaults.string(forKey: Settings.userName) ?? "")"
+        label.text = "Welcome, \(UserSettings.defaults.string(forKey: UserSettings.userName) ?? "")"
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         signOutBtn.layer.cornerRadius = signOutBtn.frame.height/2
         signOutBtn.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2).cgColor
@@ -33,7 +33,7 @@ class LogOutViewController: UIViewController {
         let alertVC = UIAlertController(title: "Sign out", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
             ProgressHUD.show()
-            Settings.goToFirstVC()
+            UserSettings.goToFirstVC()
             ProgressHUD.dismiss()
         }
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)

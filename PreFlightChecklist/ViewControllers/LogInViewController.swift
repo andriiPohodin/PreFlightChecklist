@@ -64,7 +64,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 let document = querySnapshot!.documents.first
                 let dataDescription = document?.data()
                 guard let firstName = dataDescription?["firstName"] else { return }
-                Settings.setUserName(firstName as! String)
+                UserSettings.setUserName(firstName as! String)
             }
         }
     }
@@ -87,7 +87,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 else {
                     self?.getUserName()
                     ProgressHUD.dismiss()
-                    Settings.goToMainVC()
+                    UserSettings.goToMainVC()
                 }
             }
         }
