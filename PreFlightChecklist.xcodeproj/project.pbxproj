@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1808B2172517936F00BA55B3 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1808B2162517936F00BA55B3 /* ForgotPasswordViewController.swift */; };
 		18094C6B24C85C1300817014 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18094C6A24C85C1200817014 /* GoogleService-Info.plist */; };
 		180BACB124C6C2DF0012EE8C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACB024C6C2DF0012EE8C /* AppDelegate.swift */; };
 		180BACB324C6C2DF0012EE8C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 180BACB224C6C2DF0012EE8C /* SceneDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1808B2162517936F00BA55B3 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		18094C6A24C85C1200817014 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		180BACAD24C6C2DF0012EE8C /* PreFlightChecklist.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PreFlightChecklist.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		180BACB024C6C2DF0012EE8C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				180BACCC24C6C3630012EE8C /* MainViewController.swift */,
 				180BACCE24C6C37B0012EE8C /* ProgramPartViewController.swift */,
 				180BACD024C6C38B0012EE8C /* FinalViewController.swift */,
+				1808B2162517936F00BA55B3 /* ForgotPasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 				180BACB124C6C2DF0012EE8C /* AppDelegate.swift in Sources */,
 				180BACCB24C6C3570012EE8C /* LogInViewController.swift in Sources */,
 				180BACBB24C6C2DF0012EE8C /* PreFlightChecklist.xcdatamodeld in Sources */,
+				1808B2172517936F00BA55B3 /* ForgotPasswordViewController.swift in Sources */,
 				180BACB324C6C2DF0012EE8C /* SceneDelegate.swift in Sources */,
 				182C7BD824F6ED4C00641EA8 /* UserSettings.swift in Sources */,
 				180BACC924C6C3480012EE8C /* SignUpViewController.swift in Sources */,

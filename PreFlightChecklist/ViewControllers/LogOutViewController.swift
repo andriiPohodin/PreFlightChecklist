@@ -1,4 +1,7 @@
 import UIKit
+import FirebaseFirestore
+import FirebaseStorage
+import ProgressHUD
 
 class LogOutViewController: UIViewController {
     
@@ -29,8 +32,9 @@ class LogOutViewController: UIViewController {
         
         let alertVC = UIAlertController(title: "Sign out", message: "Are you sure?", preferredStyle: .alert)
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
+            ProgressHUD.show()
             Settings.goToFirstVC()
-            
+            ProgressHUD.dismiss()
         }
         let noAction = UIAlertAction(title: "No", style: .cancel, handler: nil)
         alertVC.addAction(yesAction)

@@ -1,13 +1,14 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import ProgressHUD
 
 class LogInViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var logInBtn: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var forgotPasswordBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,21 +42,15 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     
     private func setUpElements() {
         
-        errorLabel.alpha = 0
         Utilities.styleTextField(emailTextField)
         Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(logInBtn)
+        forgotPasswordBtn.setTitle("Forgot password?", for: .normal)
         logInBtn.setTitle("logIn".localized, for: .normal)
         emailTextField.placeholder = "email".localized
         emailTextField.becomeFirstResponder()
         passwordTextField.placeholder = "password".localized
         navigationController?.isNavigationBarHidden = false
-    }
-    
-    func showError (_ message: String) {
-        
-        errorLabel.text = message
-        errorLabel.alpha = 1
     }
     
     private func getUserName() {
@@ -77,19 +72,21 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     private func validateFields() {
         
         if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            showError("fillInAllFields".localized)
+            ProgressHUD.showError("fillInAllFields".localized)
         }
         else {
+            ProgressHUD.show()
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, err) in
                 if err != nil {
                     let localizedErr = err?.localizedDescription
-                    self?.showError(localizedErr!.localized)
+                    ProgressHUD.showError(localizedErr!.localized)
                 }
                 else {
                     self?.getUserName()
+                    ProgressHUD.dismiss()
                     Settings.goToMainVC()
                 }
             }
@@ -99,5 +96,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     @IBAction func logInBtnAction(_ sender: UIButton) {
         
         validateFields()
+    }
+    @IBAction func forgotPasswordAction(_ sender: UIButton) {
     }
 }

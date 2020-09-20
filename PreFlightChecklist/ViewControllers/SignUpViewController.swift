@@ -1,6 +1,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import ProgressHUD
 
 class SignUpViewController: UIViewController, UITextFieldDelegate {
     
@@ -11,7 +12,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var organizationTextField: UITextField!
     @IBOutlet weak var signUpBtn: UIButton!
-    @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +94,6 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
     
     private func setUpElements() {
         
-        errorLabel.alpha = 0
         Utilities.styleTextField(firstNameTextField)
         Utilities.styleTextField(lastNameTextField)
         Utilities.styleTextField(emailTextField)
@@ -113,20 +112,15 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func showError (_ message: String) {
-        
-        errorLabel.text = message
-        errorLabel.alpha = 1
-    }
-    
     private func validateFields() {
         
         if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
             organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
-            showError("fillInAllFields".localized)
+            ProgressHUD.showError("fillInAllFields".localized)
         }
         else {
+            ProgressHUD.show()
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
@@ -136,29 +130,30 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             
             if Utilities.isPasswordValid(password) == true {
                 if password == confirmPassword {
-                    Auth.auth().createUser(withEmail: email, password: password) { [weak self] (result, err) in
+                    Auth.auth().createUser(withEmail: email, password: password) { (result, err) in
                         if err != nil {
                             let localizedErr = err?.localizedDescription
-                            self?.showError(localizedErr!.localized)
+                            ProgressHUD.showError(localizedErr!.localized)
                         }
                         else {
                             let db = Firestore.firestore()
-                            db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { [weak self] (err) in
+                            db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
                                 if err != nil {
-                                    self?.showError(err!.localizedDescription)
+                                    ProgressHUD.showError(err!.localizedDescription)
                                 }
                             }
                             Settings.setUserName(firstName)
+                            ProgressHUD.dismiss()
                             Settings.goToMainVC()
                         }
                     }
                 }
                 else {
-                    showError("passwordConfirmationError".localized)
+                    ProgressHUD.showError("passwordConfirmationError".localized)
                 }
             }
             else {
-                showError("passwordValidationError".localized)
+                ProgressHUD.showError("passwordValidationError".localized)
             }
         }
     }

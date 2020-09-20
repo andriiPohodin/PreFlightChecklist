@@ -33,8 +33,8 @@ class Settings {
     
     static func goToFirstVC() {
         
+        removeUserName()
         guard let vc = UIStoryboard(name: Constants.Storyboard.logIn, bundle: Bundle.main).instantiateInitialViewController() else { return }
         UIApplication.shared.windows.first?.rootViewController = vc
-        removeUserName()
     }
 }

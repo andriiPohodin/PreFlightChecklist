@@ -11,6 +11,9 @@ target 'PreFlightChecklist' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Core'
 	pod 'Firebase/Firestore'
+	pod 'Firebase/Storage'
+	pod 'Kingfisher'
 	pod 'iOSDropDown'
+	pod 'ProgressHUD'
 
 end
