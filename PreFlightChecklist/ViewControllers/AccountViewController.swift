@@ -25,44 +25,6 @@ class AccountViewController: UIViewController {
         setUpElements()
     }
     
-    private func showAlert() {
-        
-        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
-        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [ weak self ] (action: UIAlertAction) in
-            if SPPermission.isAllowed(.camera) {
-                self?.presentPicker(sourceType: .camera)
-            }
-            else {
-                alert.dismiss(animated: true, completion: nil)
-                SPPermission.Dialog.request(with: [.camera], on: self!)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: { [ weak self ] (action: UIAlertAction) in
-            if SPPermission.isAllowed(.photoLibrary) {
-                self?.presentPicker(sourceType: .photoLibrary)
-            }
-            else {
-                alert.dismiss(animated: true, completion: nil)
-                SPPermission.Dialog.request(with: [.photoLibrary], on: self!)
-            }
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
-        present(alert, animated: true, completion: nil)
-    }
-    
-    private func presentPicker(sourceType: UIImagePickerController.SourceType) {
-        
-        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
-            let picker = UIImagePickerController()
-            picker.sourceType = sourceType
-            picker.allowsEditing = true
-            picker.delegate = self
-            present(picker, animated: true)
-        }
-    }
-    
     private func setUpElements() {
         
         label.text = "Welcome, \(UserSettings.defaults.string(forKey: UserSettings.userName) ?? "")"
@@ -88,6 +50,32 @@ class AccountViewController: UIViewController {
         }
     }
     
+    private func showAlert() {
+        
+        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [ weak self ] (action: UIAlertAction) in
+            self?.presentImagePicker(sourceType: .camera)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: { [ weak self ] (action: UIAlertAction) in
+            self?.presentImagePicker(sourceType: .photoLibrary)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentImagePicker(sourceType: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let picker = UIImagePickerController()
+            picker.sourceType = sourceType
+            picker.allowsEditing = true
+            picker.delegate = self
+            present(picker, animated: true)
+        }
+    }
+    
     @IBAction func signOutAction(_ sender: UIButton) {
         
         let alertVC = UIAlertController(title: "Sign out", message: "Are you sure?", preferredStyle: .alert)
@@ -104,13 +92,19 @@ class AccountViewController: UIViewController {
     
     @IBAction func addPhotoAction(_ sender: UIButton) {
         
-        showAlert()
+        if SPPermission.isAllowed(.camera) && SPPermission.isAllowed(.photoLibrary) {
+            showAlert()
+        }
+        else {
+            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self)
+        }
     }
 }
 
 extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPPermissionDialogDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
         let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         profileImage.image = selectedImage
         avatar = selectedImage
@@ -118,25 +112,10 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
         picker.dismiss(animated: true, completion: nil)
     }
     
-    func didAllow(permission: SPPermissionType) {
-
-        switch permission {
-        case .photoLibrary:
-            presentPicker(sourceType: .photoLibrary)
-        case .camera:
-            presentPicker(sourceType: .camera)
-        default:
-            break
+    func didHide() {
+        
+        if SPPermission.isAllowed(.photoLibrary) && SPPermission.isAllowed(.camera) {
+            showAlert()
         }
     }
-    
-//    func didHide() {
-//
-//        if SPPermission.isAllowed(.photoLibrary) {
-//            presentPicker(fromSourceType: .photoLibrary)
-//        }
-//        else if SPPermission.isAllowed(.camera) {
-//            presentPicker(fromSourceType: .camera)
-//        }
-//    }
 }
