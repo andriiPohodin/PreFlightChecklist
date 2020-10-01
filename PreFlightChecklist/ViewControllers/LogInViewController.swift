@@ -57,8 +57,8 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
         docRef.getDocuments { (querySnapshot, err) in
-            if let err = err {
-                print(err.localizedDescription)
+            if err != nil {
+                print(err!.localizedDescription)
             }
             else {
                 let document = querySnapshot!.documents.first
@@ -67,6 +67,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 UserSettings.setUserName(firstName as! String)
             }
         }
+    }
+    
+    private func getUserAvatar() {
+        
     }
     
     private func validateFields() {
@@ -86,6 +90,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 }
                 else {
                     self?.getUserName()
+                    self?.getUserAvatar()
                     ProgressHUD.dismiss()
                     UserSettings.goToMainVC()
                 }
@@ -97,6 +102,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         
         validateFields()
     }
+    
     @IBAction func forgotPasswordAction(_ sender: UIButton) {
     }
 }

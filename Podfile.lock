@@ -341,6 +341,13 @@ PODS:
   - nanopb/encode (1.30905.0)
   - ProgressHUD (13.4)
   - PromisesObjC (1.2.9)
+  - SPPermission/Camera (4.1):
+    - SPPermission/Core
+  - SPPermission/Core (4.1)
+  - SPPermission/Notification (4.1):
+    - SPPermission/Core
+  - SPPermission/PhotoLibrary (4.1):
+    - SPPermission/Core
 
 DEPENDENCIES:
   - Firebase/Analytics
@@ -351,6 +358,9 @@ DEPENDENCIES:
   - iOSDropDown
   - Kingfisher
   - ProgressHUD
+  - SPPermission/Camera
+  - SPPermission/Notification
+  - SPPermission/PhotoLibrary
 
 SPEC REPOS:
   trunk:
@@ -376,6 +386,7 @@ SPEC REPOS:
     - nanopb
     - ProgressHUD
     - PromisesObjC
+    - SPPermission
 
 SPEC CHECKSUMS:
   abseil: 6c8eb7892aefa08d929b39f9bb108e5367e3228f
@@ -400,7 +411,8 @@ SPEC CHECKSUMS:
   nanopb: c43f40fadfe79e8b8db116583945847910cbabc9
   ProgressHUD: 137a7fc677487c5581668f4490563124fb35c232
   PromisesObjC: b48e0338dbbac2207e611750777895f7a5811b75
+  SPPermission: 2a07b0c4ee6b1a37dc0174b6a4c970ff9a5dd7bd
 
-PODFILE CHECKSUM: 3240e1de757362e1c7d2babaa8ef766d7caade38
+PODFILE CHECKSUM: e6c4206bf36c5bdcb6b32fc71ab83850ce94dd83
 
 COCOAPODS: 1.9.3

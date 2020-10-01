@@ -4,10 +4,16 @@ class UserSettings {
     
     static let defaults = UserDefaults.standard
     static let userName = "user"
+    static let userAvatar = "avatar"
     
     static func setUserName(_ name:String) {
         
         defaults.set(name, forKey: userName)
+    }
+    
+    static func setUserAvatarID(_ avatarID:String) {
+        
+        defaults.set(avatarID, forKey: userAvatar)
     }
     
     static func removeUserName() {

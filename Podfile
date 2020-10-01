@@ -15,5 +15,8 @@ target 'PreFlightChecklist' do
 	pod 'Kingfisher'
 	pod 'iOSDropDown'
 	pod 'ProgressHUD'
+	pod 'SPPermission/Notification'
+	pod 'SPPermission/Camera'
+	pod 'SPPermission/PhotoLibrary'
 
 end
