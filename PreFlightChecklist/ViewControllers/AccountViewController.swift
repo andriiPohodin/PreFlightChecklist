@@ -17,6 +17,7 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,24 +75,40 @@ class AccountViewController: UIViewController {
     
     @IBAction func addPhotoAction(_ sender: UIButton) {
         
-        if SPPermission.isAllowed(.camera), SPPermission.isAllowed(.photoLibrary) {
-            
+        if SPPermission.isAllowed(.camera) && SPPermission.isAllowed(.photoLibrary) {
+
             presentPicker()
         }
         else {
             
-            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self)
+            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self)
         }
     }
 }
 
-extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    
+extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPPermissionDialogDelegate {
+        
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         profileImage.image = selectedImage
         avatar = selectedImage
         saveAvatar()
         picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func didAllow(permission: SPPermissionType) {
+        
+        switch permission {
+        case .camera:
+            if SPPermission.isAllowed(.photoLibrary) {
+                presentPicker()
+            }
+        case .photoLibrary:
+            if SPPermission.isAllowed(.camera) {
+                presentPicker()
+            }
+        default:
+            break
+        }
     }
 }
