@@ -25,6 +25,44 @@ class AccountViewController: UIViewController {
         setUpElements()
     }
     
+    private func showAlert() {
+        
+        let alert = UIAlertController(title: "Image Selection", message: "From where you want to pick this image?", preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { [ weak self ] (action: UIAlertAction) in
+            if SPPermission.isAllowed(.camera) {
+                self?.presentPicker(sourceType: .camera)
+            }
+            else {
+                alert.dismiss(animated: true, completion: nil)
+                SPPermission.Dialog.request(with: [.camera], on: self!)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Photo Album", style: .default, handler: { [ weak self ] (action: UIAlertAction) in
+            if SPPermission.isAllowed(.photoLibrary) {
+                self?.presentPicker(sourceType: .photoLibrary)
+            }
+            else {
+                alert.dismiss(animated: true, completion: nil)
+                SPPermission.Dialog.request(with: [.photoLibrary], on: self!)
+            }
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        present(alert, animated: true, completion: nil)
+    }
+    
+    private func presentPicker(sourceType: UIImagePickerController.SourceType) {
+        
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            let picker = UIImagePickerController()
+            picker.sourceType = sourceType
+            picker.allowsEditing = true
+            picker.delegate = self
+            present(picker, animated: true)
+        }
+    }
+    
     private func setUpElements() {
         
         label.text = "Welcome, \(UserSettings.defaults.string(forKey: UserSettings.userName) ?? "")"
@@ -33,16 +71,7 @@ class AccountViewController: UIViewController {
         signOutBtn.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2).cgColor
     }
     
-    func presentPicker() {
-        
-        let picker = UIImagePickerController()
-        picker.sourceType = .photoLibrary
-        picker.allowsEditing = true
-        picker.delegate = self
-        present(picker, animated: true)
-    }
-    
-    func saveAvatar() {
+    private func saveAvatar() {
         
         guard let imageData = avatar?.jpegData(compressionQuality: 0.4) else { return }
         let storageRef = Storage.storage().reference(forURL: "gs://preflightchecklist-323e2.appspot.com")
@@ -75,19 +104,12 @@ class AccountViewController: UIViewController {
     
     @IBAction func addPhotoAction(_ sender: UIButton) {
         
-        if SPPermission.isAllowed(.camera) && SPPermission.isAllowed(.photoLibrary) {
-
-            presentPicker()
-        }
-        else {
-            
-            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self)
-        }
+        showAlert()
     }
 }
 
 extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPPermissionDialogDelegate {
-        
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
         profileImage.image = selectedImage
@@ -97,18 +119,24 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
     }
     
     func didAllow(permission: SPPermissionType) {
-        
+
         switch permission {
-        case .camera:
-            if SPPermission.isAllowed(.photoLibrary) {
-                presentPicker()
-            }
         case .photoLibrary:
-            if SPPermission.isAllowed(.camera) {
-                presentPicker()
-            }
+            presentPicker(sourceType: .photoLibrary)
+        case .camera:
+            presentPicker(sourceType: .camera)
         default:
             break
         }
     }
+    
+//    func didHide() {
+//
+//        if SPPermission.isAllowed(.photoLibrary) {
+//            presentPicker(fromSourceType: .photoLibrary)
+//        }
+//        else if SPPermission.isAllowed(.camera) {
+//            presentPicker(fromSourceType: .camera)
+//        }
+//    }
 }
