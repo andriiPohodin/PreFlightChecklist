@@ -141,8 +141,29 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
                                 if err != nil {
                                     ProgressHUD.showError(err!.localizedDescription)
                                 }
+                                else {
+                                    UserSettings.setUserData(firstName, uid: Auth.auth().currentUser!.uid)
+                                    let img = UIImage(named: "defaultProfileImage")
+                                    guard let imageData = img?.jpegData(compressionQuality: 0.4) else { return }
+                                    
+                                    let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                                    guard let localUrl = documentsLocalRef?.appendingPathComponent(Auth.auth().currentUser!.uid) else { return }
+                                    do {
+                                        try imageData.write(to: localUrl)
+                                    } catch {
+                                        print(error.localizedDescription)
+                                    }
+                                    let cloudImageRef = Storage.storage().reference(forURL: Constants.storageRef).child(Auth.auth().currentUser!.uid)
+                                    let metadata = StorageMetadata()
+                                    metadata.contentType = "image/jpeg"
+                                    cloudImageRef.putData(imageData, metadata: metadata) { (storageMetaData, err) in
+                                        if err != nil {
+                                            print(err!.localizedDescription)
+                                            return
+                                        }
+                                    }
+                                }
                             }
-                            UserSettings.setUserName(firstName)
                             ProgressHUD.dismiss()
                             UserSettings.goToMainVC()
                         }

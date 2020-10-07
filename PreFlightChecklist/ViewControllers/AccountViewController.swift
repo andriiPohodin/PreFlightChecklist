@@ -12,11 +12,8 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var addPhotoBtn: UIButton!
     
-    var avatar: UIImage?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
     }
     
@@ -31,22 +28,36 @@ class AccountViewController: UIViewController {
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         signOutBtn.layer.cornerRadius = signOutBtn.frame.height/2
         signOutBtn.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2).cgColor
+        
+        let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        guard let localUrl = documentsLocalRef?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
+        do {
+            let imageData = try Data(contentsOf: localUrl)
+            profileImage.image = UIImage(data: imageData)
+        } catch {
+            print("Error loading image : \(error)")
+        }
     }
     
-    private func saveAvatar() {
+    private func saveNewAvatar() {
         
-        guard let imageData = avatar?.jpegData(compressionQuality: 0.4) else { return }
-        let storageRef = Storage.storage().reference(forURL: "gs://preflightchecklist-323e2.appspot.com")
-        let storageProfileRef = storageRef.child("profile").child(Auth.auth().currentUser!.uid)
-        UserSettings.setUserAvatarID(Auth.auth().currentUser!.uid)
+        guard let imageData = profileImage.image?.jpegData(compressionQuality: 0.4) else { return }
+        let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        guard let localUrl = documentsLocalRef?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
+        do {
+            try imageData.write(to: localUrl)
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        let cloudImageRef = Storage.storage().reference(forURL: Constants.storageRef).child(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        storageProfileRef.putData(imageData, metadata: metadata) { (storageMetaData, err) in
+        cloudImageRef.putData(imageData, metadata: metadata) { (storageMetaData, err) in
             if err != nil {
                 print(err!.localizedDescription)
                 return
             }
-            print(UserSettings.defaults.string(forKey: UserSettings.userAvatar)!)
         }
     }
     
@@ -69,9 +80,9 @@ class AccountViewController: UIViewController {
         
         if UIImagePickerController.isSourceTypeAvailable(sourceType) {
             let picker = UIImagePickerController()
+            picker.delegate = self
             picker.sourceType = sourceType
             picker.allowsEditing = true
-            picker.delegate = self
             present(picker, animated: true)
         }
     }
@@ -96,19 +107,22 @@ class AccountViewController: UIViewController {
             showAlert()
         }
         else {
-            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self)
+            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self, dataSource: self)
         }
     }
 }
 
-extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPPermissionDialogDelegate {
+extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPPermissionDialogDelegate, SPPermissionDialogDataSource {
+    
+    var startTransitionYoffset: CGFloat {
+        return 0
+    }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         
-        let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else { return }
         profileImage.image = selectedImage
-        avatar = selectedImage
-        saveAvatar()
+        saveNewAvatar()
         picker.dismiss(animated: true, completion: nil)
     }
     

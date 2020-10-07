@@ -53,24 +53,32 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
         navigationController?.isNavigationBarHidden = false
     }
     
-    private func getUserName() {
+    private func getUserData() {
         
         let docRef = Firestore.firestore().collection("users").whereField("uid", isEqualTo: Auth.auth().currentUser?.uid ?? "")
-        docRef.getDocuments { (querySnapshot, err) in
+        docRef.getDocuments { (snapshot, err) in
             if err != nil {
                 print(err!.localizedDescription)
             }
             else {
-                let document = querySnapshot!.documents.first
-                let dataDescription = document?.data()
-                guard let firstName = dataDescription?["firstName"] else { return }
-                UserSettings.setUserName(firstName as! String)
+                let document = snapshot!.documents.first
+                let data = document?.data()
+                guard let firstName = data?["firstName"] else { return }
+                UserSettings.setUserData(firstName as! String, uid: Auth.auth().currentUser!.uid)
             }
         }
-    }
-    
-    private func getUserAvatar() {
         
+        let cloudImageRef = Storage.storage().reference(forURL: Constants.storageRef).child(Auth.auth().currentUser!.uid)
+        let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        guard let localUrl = documentsLocalRef?.appendingPathComponent(Auth.auth().currentUser!.uid) else { return }
+        let downloadTask = cloudImageRef.write(toFile: localUrl) { (url, err) in
+            if err != nil {
+                print(err!.localizedDescription)
+            }
+        }
+        downloadTask.observe(.success) { (snapshot) in
+            print("Image successfuly downloaded")
+        }
     }
     
     private func validateFields() {
@@ -89,8 +97,7 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                     ProgressHUD.showError(localizedErr!.localized)
                 }
                 else {
-                    self?.getUserName()
-                    self?.getUserAvatar()
+                    self?.getUserData()
                     ProgressHUD.dismiss()
                     UserSettings.goToMainVC()
                 }

@@ -4,21 +4,18 @@ class UserSettings {
     
     static let defaults = UserDefaults.standard
     static let userName = "user"
-    static let userAvatar = "avatar"
+    static let currentUserUid = "currentUserUid"
     
-    static func setUserName(_ name:String) {
+    static func setUserData(_ name:String, uid:String) {
         
-        defaults.set(name, forKey: userName)
+        defaults.setValue(name, forKey: userName)
+        defaults.setValue(uid, forKey: currentUserUid)
     }
     
-    static func setUserAvatarID(_ avatarID:String) {
-        
-        defaults.set(avatarID, forKey: userAvatar)
-    }
-    
-    static func removeUserName() {
+    static func removeUserData() {
         
         defaults.removeObject(forKey: userName)
+        defaults.removeObject(forKey: currentUserUid)
     }
     
     static func ifLoggedIn() {
@@ -39,7 +36,7 @@ class UserSettings {
     
     static func goToFirstVC() {
         
-        removeUserName()
+        removeUserData()
         guard let vc = UIStoryboard(name: Constants.Storyboard.logIn, bundle: Bundle.main).instantiateInitialViewController() else { return }
         UIApplication.shared.windows.first?.rootViewController = vc
     }
