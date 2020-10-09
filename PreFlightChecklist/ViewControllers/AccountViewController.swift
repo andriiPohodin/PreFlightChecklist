@@ -29,8 +29,7 @@ class AccountViewController: UIViewController {
         signOutBtn.layer.cornerRadius = signOutBtn.frame.height/2
         signOutBtn.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2).cgColor
         
-        let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        guard let localUrl = documentsLocalRef?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
+        guard let localUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
         do {
             let imageData = try Data(contentsOf: localUrl)
             profileImage.image = UIImage(data: imageData)
@@ -42,21 +41,18 @@ class AccountViewController: UIViewController {
     private func saveNewAvatar() {
         
         guard let imageData = profileImage.image?.jpegData(compressionQuality: 0.4) else { return }
-        let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        guard let localUrl = documentsLocalRef?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
+        guard let localUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
         do {
             try imageData.write(to: localUrl)
         } catch {
             print(error.localizedDescription)
         }
-        
-        let cloudImageRef = Storage.storage().reference(forURL: Constants.storageRef).child(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!)
+        let storageRef = Storage.storage().reference(forURL: Constants.storageRef).child(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!)
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
-        cloudImageRef.putData(imageData, metadata: metadata) { (storageMetaData, err) in
+        storageRef.putData(imageData, metadata: metadata) { (storageMetaData, err) in
             if err != nil {
                 print(err!.localizedDescription)
-                return
             }
         }
     }

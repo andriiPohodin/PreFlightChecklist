@@ -64,20 +64,19 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 let document = snapshot!.documents.first
                 let data = document?.data()
                 guard let firstName = data?["firstName"] else { return }
-                UserSettings.setUserData(firstName as! String, uid: Auth.auth().currentUser!.uid)
+                guard let localUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(Auth.auth().currentUser!.uid) else { return }
+                let storageRef = Storage.storage().reference(forURL: Constants.storageRef).child(Auth.auth().currentUser!.uid)
+                UserSettings.setUserData(firstName as! String, Auth.auth().currentUser!.uid)
+                let downloadTask = storageRef.write(toFile: localUrl) { (url, err) in
+                    if err != nil {
+                        // Should put here a default image as well
+                        print(err!.localizedDescription)
+                    }
+                }
+                downloadTask.observe(.success) { (snapshot) in
+                    print("Image successfuly downloaded")
+                }
             }
-        }
-        
-        let cloudImageRef = Storage.storage().reference(forURL: Constants.storageRef).child(Auth.auth().currentUser!.uid)
-        let documentsLocalRef = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        guard let localUrl = documentsLocalRef?.appendingPathComponent(Auth.auth().currentUser!.uid) else { return }
-        let downloadTask = cloudImageRef.write(toFile: localUrl) { (url, err) in
-            if err != nil {
-                print(err!.localizedDescription)
-            }
-        }
-        downloadTask.observe(.success) { (snapshot) in
-            print("Image successfuly downloaded")
         }
     }
     
