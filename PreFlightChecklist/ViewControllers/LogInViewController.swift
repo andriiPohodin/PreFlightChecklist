@@ -3,7 +3,7 @@ import FirebaseAuth
 import Firebase
 import ProgressHUD
 
-class LogInViewController: UIViewController, UITextFieldDelegate {
+class LogInViewController: UIViewController {
     
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -69,7 +69,6 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
                 UserSettings.setUserData(firstName as! String, Auth.auth().currentUser!.uid)
                 let downloadTask = storageRef.write(toFile: localUrl) { (url, err) in
                     if err != nil {
-                        // Should put here a default image as well
                         print(err!.localizedDescription)
                     }
                 }
@@ -86,10 +85,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
             ProgressHUD.showError("fillInAllFields".localized)
         }
         else {
-            ProgressHUD.show()
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             
+            ProgressHUD.show()
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, err) in
                 if err != nil {
                     let localizedErr = err?.localizedDescription
@@ -110,5 +109,10 @@ class LogInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func forgotPasswordAction(_ sender: UIButton) {
+        
     }
+}
+
+extension LogInViewController: UITextFieldDelegate {
+    
 }

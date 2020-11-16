@@ -3,6 +3,7 @@ import AVKit
 
 class FirstViewController: UIViewController {
     
+    @IBOutlet weak var videoPlayerView: UIView!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var logInBtn: UIButton!
     
@@ -38,8 +39,8 @@ class FirstViewController: UIViewController {
         let item = AVPlayerItem(url: url)
         videoPlayer = AVQueuePlayer(playerItem: item)
         videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
-        videoPlayerLayer?.frame = CGRect (x: -self.view.frame.width * 0.5, y: -self.view.frame.height * 0.58, width: self.view.frame.width * 2, height: self.view.frame.height * 2)
-        view.layer.insertSublayer(videoPlayerLayer!, at: 0)
+        videoPlayerLayer?.frame = CGRect (x: 0, y: 0, width: videoPlayerView.frame.width, height: videoPlayerView.frame.height)
+        videoPlayerView.layer.insertSublayer(videoPlayerLayer!, at: 0)
         playerLooper = AVPlayerLooper(player: videoPlayer!, templateItem: item)
         videoPlayer?.playImmediately(atRate: 2)
     }

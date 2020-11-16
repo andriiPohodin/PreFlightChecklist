@@ -3,7 +3,7 @@ import FirebaseAuth
 import Firebase
 import ProgressHUD
 
-class SignUpViewController: UIViewController, UITextFieldDelegate {
+class SignUpViewController: UIViewController {
     
     @IBOutlet weak var firstNameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -120,13 +120,13 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
             ProgressHUD.showError("fillInAllFields".localized)
         }
         else {
-            ProgressHUD.show()
             let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let confirmPassword = confirmPasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
             let organization = organizationTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            ProgressHUD.show()
             
             if Utilities.isPasswordValid(password) == true {
                 if password == confirmPassword {
@@ -181,4 +181,8 @@ class SignUpViewController: UIViewController, UITextFieldDelegate {
         
         validateFields()
     }
+}
+
+extension SignUpViewController: UITextFieldDelegate {
+    
 }

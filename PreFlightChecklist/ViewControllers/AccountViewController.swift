@@ -34,7 +34,7 @@ class AccountViewController: UIViewController {
             let imageData = try Data(contentsOf: localUrl)
             profileImage.image = UIImage(data: imageData)
         } catch {
-            print("Error loading image : \(error)")
+            print("Error uploading image : \(error)")
         }
     }
     

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="R2z-18-Y5p">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="R2z-18-Y5p">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,13 +17,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FBW-F1-EUb">
+                                <rect key="frame" x="0.0" y="44" width="375" height="458"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="38f-vy-eYS">
                                 <rect key="frame" x="40" y="512" width="295" height="115"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mvq-8c-7av">
                                         <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="OZG-V1-GZ2"/>
+                                            <constraint firstAttribute="height" constant="50" id="ceP-fa-fNe"/>
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <connections>
@@ -41,30 +45,33 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="KsB-jC-ODI" firstAttribute="width" secondItem="mvq-8c-7av" secondAttribute="width" id="3Yn-Qz-cqF"/>
-                                    <constraint firstAttribute="trailing" secondItem="mvq-8c-7av" secondAttribute="trailing" id="CIH-oa-dCe"/>
-                                    <constraint firstItem="KsB-jC-ODI" firstAttribute="height" secondItem="mvq-8c-7av" secondAttribute="height" id="abh-JD-SBJ"/>
-                                    <constraint firstItem="mvq-8c-7av" firstAttribute="leading" secondItem="38f-vy-eYS" secondAttribute="leading" id="guz-R3-bo7"/>
+                                    <constraint firstItem="KsB-jC-ODI" firstAttribute="height" secondItem="mvq-8c-7av" secondAttribute="height" id="Azd-CA-h7I"/>
+                                    <constraint firstItem="KsB-jC-ODI" firstAttribute="width" secondItem="mvq-8c-7av" secondAttribute="width" id="cwe-gm-e56"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="G1N-yP-fl8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="G1N-yP-fl8" firstAttribute="bottom" secondItem="38f-vy-eYS" secondAttribute="bottom" constant="40" id="Lso-4R-3kq"/>
-                            <constraint firstItem="38f-vy-eYS" firstAttribute="leading" secondItem="G1N-yP-fl8" secondAttribute="leading" constant="40" id="b63-fh-O5d"/>
-                            <constraint firstItem="G1N-yP-fl8" firstAttribute="trailing" secondItem="38f-vy-eYS" secondAttribute="trailing" constant="40" id="r0b-Nb-rrC"/>
+                            <constraint firstItem="38f-vy-eYS" firstAttribute="top" secondItem="FBW-F1-EUb" secondAttribute="bottom" constant="10" id="8UY-fQ-25U"/>
+                            <constraint firstItem="FBW-F1-EUb" firstAttribute="top" secondItem="G1N-yP-fl8" secondAttribute="top" id="C4F-FI-aMF"/>
+                            <constraint firstItem="G1N-yP-fl8" firstAttribute="bottom" secondItem="38f-vy-eYS" secondAttribute="bottom" constant="40" id="IIh-iy-xRe"/>
+                            <constraint firstItem="FBW-F1-EUb" firstAttribute="trailing" secondItem="G1N-yP-fl8" secondAttribute="trailing" id="fvJ-RE-GJc"/>
+                            <constraint firstItem="38f-vy-eYS" firstAttribute="leading" secondItem="G1N-yP-fl8" secondAttribute="leading" constant="40" id="mtd-qK-c3h"/>
+                            <constraint firstItem="G1N-yP-fl8" firstAttribute="trailing" secondItem="38f-vy-eYS" secondAttribute="trailing" constant="40" id="p9V-lF-sUn"/>
+                            <constraint firstItem="FBW-F1-EUb" firstAttribute="leading" secondItem="G1N-yP-fl8" secondAttribute="leading" id="t5h-aZ-7Ee"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9EP-Sn-2Va"/>
                     <connections>
                         <outlet property="logInBtn" destination="KsB-jC-ODI" id="zkC-qz-XEl"/>
                         <outlet property="signUpBtn" destination="mvq-8c-7av" id="hFH-Kc-vKw"/>
+                        <outlet property="videoPlayerView" destination="FBW-F1-EUb" id="8gf-dL-wrK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYb-2Y-Q0Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="955.07246376811599" y="91.741071428571431"/>
+            <point key="canvasLocation" x="954.39999999999998" y="91.304347826086968"/>
         </scene>
         <!--Log In View Controller-->
         <scene sceneID="hVq-hV-dFY">
