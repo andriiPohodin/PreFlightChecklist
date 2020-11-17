@@ -27,19 +27,6 @@ class LogInViewController: UIViewController {
         view.endEditing(true)
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        switch textField {
-        case emailTextField:
-            passwordTextField.becomeFirstResponder()
-        case passwordTextField:
-            passwordTextField.resignFirstResponder()
-            validateFields()
-        default: break
-        }
-        return true
-    }
-    
     private func setUpElements() {
         
         Utilities.styleTextField(emailTextField)
@@ -115,4 +102,16 @@ class LogInViewController: UIViewController {
 
 extension LogInViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+
+        switch textField {
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            passwordTextField.resignFirstResponder()
+            validateFields()
+        default: break
+        }
+        return true
+    }
 }

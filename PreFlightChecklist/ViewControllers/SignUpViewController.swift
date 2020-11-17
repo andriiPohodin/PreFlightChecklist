@@ -71,27 +71,6 @@ class SignUpViewController: UIViewController {
         }
     }
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        
-        switch textField {
-        case firstNameTextField:
-            lastNameTextField.becomeFirstResponder()
-        case lastNameTextField:
-            emailTextField.becomeFirstResponder()
-        case emailTextField:
-            passwordTextField.becomeFirstResponder()
-        case passwordTextField:
-            confirmPasswordTextField.becomeFirstResponder()
-        case confirmPasswordTextField:
-            organizationTextField.becomeFirstResponder()
-        case organizationTextField:
-            organizationTextField.resignFirstResponder()
-            validateFields()
-        default: break
-        }
-        return true
-    }
-    
     private func setUpElements() {
         
         Utilities.styleTextField(firstNameTextField)
@@ -185,4 +164,24 @@ class SignUpViewController: UIViewController {
 
 extension SignUpViewController: UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        switch textField {
+        case firstNameTextField:
+            lastNameTextField.becomeFirstResponder()
+        case lastNameTextField:
+            emailTextField.becomeFirstResponder()
+        case emailTextField:
+            passwordTextField.becomeFirstResponder()
+        case passwordTextField:
+            confirmPasswordTextField.becomeFirstResponder()
+        case confirmPasswordTextField:
+            organizationTextField.becomeFirstResponder()
+        case organizationTextField:
+            organizationTextField.resignFirstResponder()
+            validateFields()
+        default: break
+        }
+        return true
+    }
 }

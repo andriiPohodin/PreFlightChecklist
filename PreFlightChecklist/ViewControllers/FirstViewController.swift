@@ -7,8 +7,6 @@ class FirstViewController: UIViewController {
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var logInBtn: UIButton!
     
-    var videoPlayer: AVQueuePlayer?
-    var videoPlayerLayer: AVPlayerLayer?
     var playerLooper: AVPlayerLooper?
     
     override func viewDidLoad() {
@@ -37,12 +35,14 @@ class FirstViewController: UIViewController {
         guard let bundlePath = Bundle.main.path(forResource: "My Movie", ofType: "mp4") else { return }
         let url = URL(fileURLWithPath: bundlePath)
         let item = AVPlayerItem(url: url)
-        videoPlayer = AVQueuePlayer(playerItem: item)
-        videoPlayerLayer = AVPlayerLayer(player: videoPlayer)
-        videoPlayerLayer?.frame = CGRect (x: 0, y: 0, width: videoPlayerView.frame.width, height: videoPlayerView.frame.height)
-        videoPlayerView.layer.insertSublayer(videoPlayerLayer!, at: 0)
-        playerLooper = AVPlayerLooper(player: videoPlayer!, templateItem: item)
-        videoPlayer?.playImmediately(atRate: 2)
+        let player = AVQueuePlayer(playerItem: item)
+        let layer = AVPlayerLayer(player: player)
+        layer.frame = videoPlayerView.bounds
+        layer.videoGravity = .resizeAspectFill
+        videoPlayerView.layer.addSublayer(layer)
+        playerLooper = AVPlayerLooper(player: player, templateItem: item)
+        player.playImmediately(atRate: 2)
+
     }
 
     @IBAction func signUpAction(_ sender: UIButton) {
