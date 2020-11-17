@@ -1,6 +1,7 @@
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 import ProgressHUD
 
 class SignUpViewController: UIViewController {
@@ -56,13 +57,13 @@ class SignUpViewController: UIViewController {
                 view.frame.origin.y = -emailTextField.frame.height
             }
             else if passwordTextField.isFirstResponder {
-                view.frame.origin.y = -passwordTextField.frame.height*2
+                view.frame.origin.y = -emailTextField.frame.height*2
             }
             else if confirmPasswordTextField.isFirstResponder {
-                view.frame.origin.y = -confirmPasswordTextField.frame.height*2
+                view.frame.origin.y = -emailTextField.frame.height*2
             }
             else if organizationTextField.isFirstResponder {
-                view.frame.origin.y = -organizationTextField.frame.height*2
+                view.frame.origin.y = -emailTextField.frame.height*2
             }
             else { return }
         case UIResponder.keyboardWillHideNotification:
@@ -93,18 +94,18 @@ class SignUpViewController: UIViewController {
     
     private func validateFields() {
         
-        if firstNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || lastNameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            confirmPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" ||
-            organizationTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if firstNameTextField.text == "" || lastNameTextField.text == "" || emailTextField.text == "" || passwordTextField.text == "" ||
+            confirmPasswordTextField.text == "" ||
+            organizationTextField.text == "" {
             ProgressHUD.showError("fillInAllFields".localized)
         }
         else {
-            let firstName = firstNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let lastName = lastNameTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let confirmPassword = confirmPasswordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let organization = organizationTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let firstName = firstNameTextField.text!
+            let lastName = lastNameTextField.text!
+            let email = emailTextField.text!
+            let password = passwordTextField.text!
+            let confirmPassword = confirmPasswordTextField.text!
+            let organization = organizationTextField.text!
             ProgressHUD.show()
             
             if Utilities.isPasswordValid(password) == true {
@@ -116,7 +117,7 @@ class SignUpViewController: UIViewController {
                         }
                         else {
                             let db = Firestore.firestore()
-                            db.collection("users").addDocument(data: ["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { (err) in
+                            db.collection("users").document("\(result!.user.uid)").setData(["firstName":firstName, "lastName":lastName, "organization":organization, "uid":result!.user.uid]) { err in
                                 if err != nil {
                                     ProgressHUD.showError(err!.localizedDescription)
                                 }

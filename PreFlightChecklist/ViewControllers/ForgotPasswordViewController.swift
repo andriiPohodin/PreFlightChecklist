@@ -23,7 +23,7 @@ class ForgotPasswordViewController: UIViewController {
     
     @IBAction func resetBtnAction(_ sender: UIButton) {
         
-        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if emailTextField.text == "" {
             ProgressHUD.showError("fillInAllFields".localized)
         }
         else {

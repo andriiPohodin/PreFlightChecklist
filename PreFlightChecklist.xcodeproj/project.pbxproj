@@ -28,6 +28,7 @@
 		18272150250D1658004BBA71 /* LogIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1827214F250D1658004BBA71 /* LogIn.storyboard */; };
 		182C7BD624E588C100641EA8 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C7BD524E588C100641EA8 /* AccountViewController.swift */; };
 		182C7BD824F6ED4C00641EA8 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182C7BD724F6ED4C00641EA8 /* UserSettings.swift */; };
+		18A5A3792563E94200B615AA /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A5A3782563E94200B615AA /* ChangePasswordViewController.swift */; };
 		18DDAD42256311B500C4BCC7 /* My Movie.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 18DDAD41256311B500C4BCC7 /* My Movie.mp4 */; };
 		AE4BF81038962BB4A4E0AEC8 /* Pods_PreFlightChecklist.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E390888A8CCBC300AD0A7DA6 /* Pods_PreFlightChecklist.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		1827214F250D1658004BBA71 /* LogIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogIn.storyboard; sourceTree = "<group>"; };
 		182C7BD524E588C100641EA8 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		182C7BD724F6ED4C00641EA8 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		18A5A3782563E94200B615AA /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		18DDAD41256311B500C4BCC7 /* My Movie.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "My Movie.mp4"; sourceTree = "<group>"; };
 		2D15D8A0E2D8A04CF8B8CFDE /* Pods-PreFlightChecklist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreFlightChecklist.debug.xcconfig"; path = "Target Support Files/Pods-PreFlightChecklist/Pods-PreFlightChecklist.debug.xcconfig"; sourceTree = "<group>"; };
 		BB6D985E9441E8BB1128F79B /* Pods-PreFlightChecklist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PreFlightChecklist.release.xcconfig"; path = "Target Support Files/Pods-PreFlightChecklist/Pods-PreFlightChecklist.release.xcconfig"; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				180BACCE24C6C37B0012EE8C /* ProgramPartViewController.swift */,
 				180BACD024C6C38B0012EE8C /* FinalViewController.swift */,
 				1808B2162517936F00BA55B3 /* ForgotPasswordViewController.swift */,
+				18A5A3782563E94200B615AA /* ChangePasswordViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				180BACCD24C6C3630012EE8C /* MainViewController.swift in Sources */,
 				180BACB524C6C2DF0012EE8C /* FirstViewController.swift in Sources */,
 				180BACB124C6C2DF0012EE8C /* AppDelegate.swift in Sources */,
+				18A5A3792563E94200B615AA /* ChangePasswordViewController.swift in Sources */,
 				180BACCB24C6C3570012EE8C /* LogInViewController.swift in Sources */,
 				180BACBB24C6C2DF0012EE8C /* PreFlightChecklist.xcdatamodeld in Sources */,
 				1808B2172517936F00BA55B3 /* ForgotPasswordViewController.swift in Sources */,

@@ -59,6 +59,8 @@
 "proSixOutdoorRtk" = "proSixOutdoorRtkRus";
 "signUp" = "Зарегистрироваться";
 "logIn" = "Войти";
+"save" = "Сохранить";
+"welcome" = "Добро пожаловать,";
 "firstName" = "Имя";
 "lastName" = "Фамилия";
 "email" = "Электронная почта (логин)";

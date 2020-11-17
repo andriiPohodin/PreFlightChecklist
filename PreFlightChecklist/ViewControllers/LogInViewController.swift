@@ -1,6 +1,7 @@
 import UIKit
 import FirebaseAuth
-import Firebase
+import FirebaseFirestore
+import FirebaseStorage
 import ProgressHUD
 
 class LogInViewController: UIViewController {
@@ -68,12 +69,12 @@ class LogInViewController: UIViewController {
     
     private func validateFields() {
         
-        if emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" || passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) == "" {
+        if emailTextField.text == "" || passwordTextField.text == "" {
             ProgressHUD.showError("fillInAllFields".localized)
         }
         else {
-            let email = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-            let password = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
+            let email = emailTextField.text!
+            let password = passwordTextField.text!
             
             ProgressHUD.show()
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, err) in

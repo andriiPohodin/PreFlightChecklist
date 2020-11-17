@@ -1,7 +1,7 @@
 import UIKit
+import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
-import FirebaseAuth
 import ProgressHUD
 import SPPermission
 
@@ -9,12 +9,16 @@ class AccountViewController: UIViewController {
     
     @IBOutlet weak var signOutBtn: UIButton!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var addPhotoBtn: UIButton!
+    @IBOutlet weak var changeNameBtn: UIButton!
+    @IBOutlet weak var changePasswordBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTextField.delegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -22,9 +26,25 @@ class AccountViewController: UIViewController {
         setUpElements()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        saveNewName()
+    }
+    
+    func saveNewName() {
+        
+        view.endEditing(true)
+        nameTextField.isUserInteractionEnabled = false
+        UserSettings.defaults.setValue(nameTextField.text, forKey: UserSettings.userName)
+        Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid).setData([ "firstName": nameTextField.text! ], merge: true)
+        
+    }
+    
     private func setUpElements() {
         
-        label.text = "Welcome, \(UserSettings.defaults.string(forKey: UserSettings.userName) ?? "")"
+        navigationController?.isNavigationBarHidden = true
+        label.text = "welcome".localized
+        nameTextField.text = UserSettings.defaults.string(forKey: UserSettings.userName)
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         signOutBtn.layer.cornerRadius = signOutBtn.frame.height/2
         signOutBtn.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2).cgColor
@@ -106,6 +126,16 @@ class AccountViewController: UIViewController {
             SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self, dataSource: self)
         }
     }
+    
+    @IBAction func changeNameAction(_ sender: UIButton) {
+        
+        nameTextField.isUserInteractionEnabled = true
+        nameTextField.becomeFirstResponder()
+    }
+    
+    @IBAction func changePasswordAction(_ sender: UIButton) {
+
+    }
 }
 
 extension AccountViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate, SPPermissionDialogDelegate, SPPermissionDialogDataSource {
@@ -127,5 +157,13 @@ extension AccountViewController: UIImagePickerControllerDelegate, UINavigationCo
         if SPPermission.isAllowed(.photoLibrary) && SPPermission.isAllowed(.camera) {
             showAlert()
         }
+    }
+}
+
+extension AccountViewController: UITextFieldDelegate {
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        saveNewName()
+        return true
     }
 }

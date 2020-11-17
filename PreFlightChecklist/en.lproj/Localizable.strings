@@ -59,6 +59,8 @@
 "proSixOutdoorRtk" = "proSixOutdoorRtk";
 "signUp" = "Sign up";
 "logIn" = "Log in";
+"save" = "Save";
+"welcome" = "Welcome,";
 "firstName" = "First name";
 "lastName" = "Last name";
 "email" = "Email (login)";

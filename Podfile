@@ -18,5 +18,6 @@ target 'PreFlightChecklist' do
 	pod 'SPPermission/Notification'
 	pod 'SPPermission/Camera'
 	pod 'SPPermission/PhotoLibrary'
+	pod 'Firebase/Database'
 
 end
