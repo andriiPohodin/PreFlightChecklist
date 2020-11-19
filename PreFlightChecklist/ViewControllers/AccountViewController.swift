@@ -11,7 +11,6 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var addPhotoBtn: UIButton!
     @IBOutlet weak var changeNameBtn: UIButton!
     @IBOutlet weak var changePasswordBtn: UIButton!
     
@@ -19,6 +18,9 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         
         nameTextField.delegate = self
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        profileImage.addGestureRecognizer(tapGesture)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -29,6 +31,16 @@ class AccountViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
         saveNewName()
+    }
+    
+    @objc func didTapImage() {
+        
+        if SPPermission.isAllowed(.camera) && SPPermission.isAllowed(.photoLibrary) {
+            showAlert()
+        }
+        else {
+            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self, dataSource: self)
+        }
     }
     
     func saveNewName() {
@@ -44,10 +56,14 @@ class AccountViewController: UIViewController {
         
         navigationController?.isNavigationBarHidden = true
         label.text = "welcome".localized
+        signOutBtn.setTitle("signOut".localized, for: .normal)
+        changeNameBtn.setTitle("editName".localized, for: .normal)
+        changePasswordBtn.setTitle("editPassword".localized, for: .normal)
         nameTextField.text = UserSettings.defaults.string(forKey: UserSettings.userName)
         profileImage.layer.cornerRadius = profileImage.frame.height/2
         signOutBtn.layer.cornerRadius = signOutBtn.frame.height/2
         signOutBtn.layer.backgroundColor = UIColor.lightGray.withAlphaComponent(0.2).cgColor
+        
         
         guard let localUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(UserSettings.defaults.string(forKey: UserSettings.currentUserUid)!) else { return }
         do {
@@ -89,6 +105,7 @@ class AccountViewController: UIViewController {
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .destructive, handler: nil))
+        
         present(alert, animated: true, completion: nil)
     }
     
@@ -115,16 +132,6 @@ class AccountViewController: UIViewController {
         alertVC.addAction(yesAction)
         alertVC.addAction(noAction)
         present(alertVC, animated: true, completion: nil)
-    }
-    
-    @IBAction func addPhotoAction(_ sender: UIButton) {
-        
-        if SPPermission.isAllowed(.camera) && SPPermission.isAllowed(.photoLibrary) {
-            showAlert()
-        }
-        else {
-            SPPermission.Dialog.request(with: [.camera, .photoLibrary], on: self, delegate: self, dataSource: self)
-        }
     }
     
     @IBAction func changeNameAction(_ sender: UIButton) {

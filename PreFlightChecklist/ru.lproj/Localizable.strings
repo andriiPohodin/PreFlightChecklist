@@ -75,3 +75,6 @@
 "There is no user record corresponding to this identifier. The user may have been deleted." = "Неверный логин";
 "Account" = "Ваш профиль";
 "Home" = "Основной";
+"signOut" = "Выйти";
+"editName" = "Редактировать имя";
+"editPassword" = "Сменить пароль";

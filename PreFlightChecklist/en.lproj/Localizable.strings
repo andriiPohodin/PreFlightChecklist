@@ -75,3 +75,6 @@
 "There is no user record corresponding to this identifier. The user may have been deleted." = "Invalid login";
 "Account" = "Your account";
 "Home" = "Home";
+"signOut" = "Sign out";
+"editName" = "Edit name";
+"editPassword" = "Edit password";

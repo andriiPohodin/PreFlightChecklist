@@ -247,8 +247,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="yW7-sY-KKt">
-                                <rect key="frame" x="75" y="123.5" width="225" height="415"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="yW7-sY-KKt">
+                                <rect key="frame" x="75" y="151" width="225" height="360"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="q6N-xf-ypk">
                                         <rect key="frame" x="0.0" y="0.0" width="225" height="40"/>
@@ -272,35 +272,28 @@
                                             <constraint firstItem="TRB-nX-bGD" firstAttribute="height" secondItem="tQE-N7-nbb" secondAttribute="height" id="sk8-Ki-C21"/>
                                         </constraints>
                                     </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-ZS-els">
-                                        <rect key="frame" x="0.0" y="50" width="225" height="225"/>
+                                    <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultProfileImage" translatesAutoresizingMaskIntoConstraints="NO" id="fpI-ZS-els">
+                                        <rect key="frame" x="0.0" y="45" width="225" height="225"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="fpI-ZS-els" secondAttribute="height" multiplier="1:1" id="CMB-8r-s4V"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="pAg-Fd-DWM">
-                                        <rect key="frame" x="0.0" y="285" width="225" height="130"/>
+                                        <rect key="frame" x="0.0" y="275" width="225" height="85"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6S-Zv-5uH">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0t-NG-b16">
                                                 <rect key="frame" x="0.0" y="0.0" width="225" height="40"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="40" id="b1u-R2-LpC"/>
+                                                    <constraint firstAttribute="height" constant="40" id="GOL-HX-bNp"/>
                                                 </constraints>
-                                                <state key="normal" title="Add Profile photo"/>
-                                                <connections>
-                                                    <action selector="addPhotoAction:" destination="rUW-DP-sYC" eventType="touchUpInside" id="wcp-1H-TCQ"/>
-                                                </connections>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="w0t-NG-b16">
-                                                <rect key="frame" x="0.0" y="45" width="225" height="40"/>
-                                                <state key="normal" title="Edit name"/>
+                                                <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="changeNameAction:" destination="rUW-DP-sYC" eventType="touchUpInside" id="1Bi-gG-5NG"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0m1-LL-d5k">
-                                                <rect key="frame" x="0.0" y="90" width="225" height="40"/>
-                                                <state key="normal" title="Edit password"/>
+                                                <rect key="frame" x="0.0" y="45" width="225" height="40"/>
+                                                <state key="normal" title="Button"/>
                                                 <connections>
                                                     <action selector="changePasswordAction:" destination="rUW-DP-sYC" eventType="touchUpInside" id="coI-eV-tpE"/>
                                                     <segue destination="sIn-0O-pnk" kind="show" id="aDl-P7-f9E"/>
@@ -308,17 +301,14 @@
                                             </button>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="0m1-LL-d5k" firstAttribute="width" secondItem="c6S-Zv-5uH" secondAttribute="width" id="cTO-kL-lST"/>
-                                            <constraint firstItem="w0t-NG-b16" firstAttribute="height" secondItem="c6S-Zv-5uH" secondAttribute="height" id="hM9-Zf-Qx6"/>
-                                            <constraint firstItem="w0t-NG-b16" firstAttribute="width" secondItem="c6S-Zv-5uH" secondAttribute="width" id="kXg-kJ-MRy"/>
-                                            <constraint firstItem="0m1-LL-d5k" firstAttribute="height" secondItem="c6S-Zv-5uH" secondAttribute="height" id="y9U-eH-7KA"/>
+                                            <constraint firstItem="0m1-LL-d5k" firstAttribute="height" secondItem="w0t-NG-b16" secondAttribute="height" id="g5t-BS-4n2"/>
                                         </constraints>
                                     </stackView>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Io7-L5-LY0">
                                 <rect key="frame" x="290" y="54" width="75" height="45"/>
-                                <state key="normal" title="Sign Out">
+                                <state key="normal" title="Button">
                                     <color key="titleColor" systemColor="systemRedColor"/>
                                 </state>
                                 <connections>
@@ -341,7 +331,6 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Account" image="book.fill" catalog="system" id="DmJ-Bg-sCc"/>
                     <connections>
-                        <outlet property="addPhotoBtn" destination="c6S-Zv-5uH" id="CCo-zT-ur0"/>
                         <outlet property="changeNameBtn" destination="w0t-NG-b16" id="YhR-dW-C6T"/>
                         <outlet property="changePasswordBtn" destination="0m1-LL-d5k" id="tzC-9f-Drt"/>
                         <outlet property="label" destination="tQE-N7-nbb" id="j7v-Kp-5S7"/>

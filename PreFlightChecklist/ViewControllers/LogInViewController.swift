@@ -75,8 +75,8 @@ class LogInViewController: UIViewController {
         else {
             let email = emailTextField.text!
             let password = passwordTextField.text!
-            
             ProgressHUD.show()
+            
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] (result, err) in
                 if err != nil {
                     let localizedErr = err?.localizedDescription
